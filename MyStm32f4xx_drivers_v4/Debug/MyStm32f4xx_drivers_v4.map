@@ -201,7 +201,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 ./Src/syscalls.o
  .debug_macro   0x0000000000000000       0xce ./Src/syscalls.o
  .debug_line    0x0000000000000000      0x83a ./Src/syscalls.o
- .debug_str     0x0000000000000000     0x8a8c ./Src/syscalls.o
+ .debug_str     0x0000000000000000     0x8a72 ./Src/syscalls.o
  .comment       0x0000000000000000       0x51 ./Src/syscalls.o
  .debug_frame   0x0000000000000000      0x2ac ./Src/syscalls.o
  .ARM.attributes
@@ -263,7 +263,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./Src/sysmem.o
  .debug_macro   0x0000000000000000      0x1df ./Src/sysmem.o
  .debug_line    0x0000000000000000      0x530 ./Src/sysmem.o
- .debug_str     0x0000000000000000     0x5dc8 ./Src/sysmem.o
+ .debug_str     0x0000000000000000     0x5dae ./Src/sysmem.o
  .comment       0x0000000000000000       0x51 ./Src/sysmem.o
  .debug_frame   0x0000000000000000       0x34 ./Src/sysmem.o
  .ARM.attributes
@@ -411,8 +411,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x1df ./myDrivers/mySrc/stm32f407xx_i2c_driver.o
  .debug_macro   0x0000000000000000      0xcf6 ./myDrivers/mySrc/stm32f407xx_i2c_driver.o
  .debug_macro   0x0000000000000000      0x118 ./myDrivers/mySrc/stm32f407xx_i2c_driver.o
- .debug_line    0x0000000000000000      0xd39 ./myDrivers/mySrc/stm32f407xx_i2c_driver.o
- .debug_str     0x0000000000000000     0x7d8d ./myDrivers/mySrc/stm32f407xx_i2c_driver.o
+ .debug_line    0x0000000000000000      0xd1f ./myDrivers/mySrc/stm32f407xx_i2c_driver.o
+ .debug_str     0x0000000000000000     0x7d73 ./myDrivers/mySrc/stm32f407xx_i2c_driver.o
  .comment       0x0000000000000000       0x51 ./myDrivers/mySrc/stm32f407xx_i2c_driver.o
  .debug_frame   0x0000000000000000      0x420 ./myDrivers/mySrc/stm32f407xx_i2c_driver.o
  .ARM.attributes
@@ -509,8 +509,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x1df ./myDrivers/mySrc/stm32f407xx_spi_driver.o
  .debug_macro   0x0000000000000000      0xcf6 ./myDrivers/mySrc/stm32f407xx_spi_driver.o
  .debug_macro   0x0000000000000000       0xbe ./myDrivers/mySrc/stm32f407xx_spi_driver.o
- .debug_line    0x0000000000000000      0x965 ./myDrivers/mySrc/stm32f407xx_spi_driver.o
- .debug_str     0x0000000000000000     0x7bcd ./myDrivers/mySrc/stm32f407xx_spi_driver.o
+ .debug_line    0x0000000000000000      0x94b ./myDrivers/mySrc/stm32f407xx_spi_driver.o
+ .debug_str     0x0000000000000000     0x7bb3 ./myDrivers/mySrc/stm32f407xx_spi_driver.o
  .comment       0x0000000000000000       0x51 ./myDrivers/mySrc/stm32f407xx_spi_driver.o
  .debug_frame   0x0000000000000000      0x33c ./myDrivers/mySrc/stm32f407xx_spi_driver.o
  .ARM.attributes
@@ -1067,27 +1067,26 @@ LOAD e:/programlar/cubeide/stm32cubeide_1.9.0/stm32cubeide/plugins/com.st.stm32c
  .debug_macro   0x0000000000002f17       0x85 ./myDrivers/mySrc/stm32f407xx_rcc_driver.o
  .debug_macro   0x0000000000002f9c       0x94 ./myDrivers/mySrc/stm32f407xx_usart_driver.o
 
-.debug_line     0x0000000000000000     0x26ba
- .debug_line    0x0000000000000000      0x819 ./Src/016uart_case.o
- .debug_line    0x0000000000000819       0x84 ./Startup/startup_stm32f407vgtx.o
- .debug_line    0x000000000000089d      0x4a0 ./myDrivers/mySrc/stm32f407xx_dma_driver.o
- .debug_line    0x0000000000000d3d      0x978 ./myDrivers/mySrc/stm32f407xx_gpio_driver.o
- .debug_line    0x00000000000016b5      0x54b ./myDrivers/mySrc/stm32f407xx_rcc_driver.o
- .debug_line    0x0000000000001c00      0xaba ./myDrivers/mySrc/stm32f407xx_usart_driver.o
+.debug_line     0x0000000000000000     0x2638
+ .debug_line    0x0000000000000000      0x7ff ./Src/016uart_case.o
+ .debug_line    0x00000000000007ff       0x84 ./Startup/startup_stm32f407vgtx.o
+ .debug_line    0x0000000000000883      0x486 ./myDrivers/mySrc/stm32f407xx_dma_driver.o
+ .debug_line    0x0000000000000d09      0x95e ./myDrivers/mySrc/stm32f407xx_gpio_driver.o
+ .debug_line    0x0000000000001667      0x531 ./myDrivers/mySrc/stm32f407xx_rcc_driver.o
+ .debug_line    0x0000000000001b98      0xaa0 ./myDrivers/mySrc/stm32f407xx_usart_driver.o
 
-.debug_str      0x0000000000000000     0xc007
- .debug_str     0x0000000000000000     0xba8c ./Src/016uart_case.o
-                                       0xbc97 (size before relaxing)
- .debug_str     0x000000000000ba8c       0x31 ./Startup/startup_stm32f407vgtx.o
-                                         0x87 (size before relaxing)
- .debug_str     0x000000000000babd      0x149 ./myDrivers/mySrc/stm32f407xx_dma_driver.o
-                                       0x771e (size before relaxing)
- .debug_str     0x000000000000bc06      0x187 ./myDrivers/mySrc/stm32f407xx_gpio_driver.o
-                                       0x7ad6 (size before relaxing)
- .debug_str     0x000000000000bd8d       0xe6 ./myDrivers/mySrc/stm32f407xx_rcc_driver.o
-                                       0x76f6 (size before relaxing)
- .debug_str     0x000000000000be73      0x194 ./myDrivers/mySrc/stm32f407xx_usart_driver.o
-                                       0x7de3 (size before relaxing)
+.debug_str      0x0000000000000000     0xc043
+ .debug_str     0x0000000000000000     0xba72 ./Src/016uart_case.o
+                                       0xbc7d (size before relaxing)
+ .debug_str     0x000000000000ba72       0x87 ./Startup/startup_stm32f407vgtx.o
+ .debug_str     0x000000000000baf9      0x149 ./myDrivers/mySrc/stm32f407xx_dma_driver.o
+                                       0x7704 (size before relaxing)
+ .debug_str     0x000000000000bc42      0x187 ./myDrivers/mySrc/stm32f407xx_gpio_driver.o
+                                       0x7abc (size before relaxing)
+ .debug_str     0x000000000000bdc9       0xe6 ./myDrivers/mySrc/stm32f407xx_rcc_driver.o
+                                       0x76dc (size before relaxing)
+ .debug_str     0x000000000000beaf      0x194 ./myDrivers/mySrc/stm32f407xx_usart_driver.o
+                                       0x7dc9 (size before relaxing)
 
 .comment        0x0000000000000000       0x50
  .comment       0x0000000000000000       0x50 ./Src/016uart_case.o
