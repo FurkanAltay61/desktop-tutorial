@@ -15,7 +15,7 @@
  * Structure Definition
  */
 /*********************************************************************
- * @fn      		  - Shape
+ * @fn      		  - Shape Class
  *
  * @brief             -
  *
@@ -63,5 +63,20 @@ void Shape_ctor(Shape * const me,int16_t x0,int16_t y0);
  * @Note              - This function moves a shape by given dx and dy values.
  */
 void Shape_moveBy(Shape * const me,int16_t dx,int16_t dy);
+
+
+/*********************************************************************
+ * @fn      		  - Shape_distanceFrom
+ *
+ * @brief             -	Shape Distance Calculator
+ *
+ * @param[*me]        -	Shape pointer structure
+ * @param[*other]     - Another shape pointer structure
+ *
+ * @return            - Absolute distance betweeen two shapes
+ *
+ * @Note              - This function calculates absolute distance between two shapes
+ */
+uint16_t Shape_distanceFrom(Shape const * const me,Shape const * const other);
 
 #endif /* INC_SHAPE_H_ */

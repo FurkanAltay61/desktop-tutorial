@@ -17,13 +17,29 @@
  */
 
 #include <stdint.h>
+#include "stdlib.h"
+#include "Shape.h"
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
+Shape s1; /*Static allocation*/
+
 int main(void)
 {
+	Shape s2; /* Automatic allocation*/
+	Shape *ps3 = malloc(sizeof(Shape)); /*dynamic allocation*/
+
+	Shape_ctor(&s1, 1, 2);
+	Shape_ctor(&s2, 3, 4);
+	Shape_ctor(ps3,  5, 6);
+
+	Shape_moveBy(&s1, 7, 8);
+	Shape_moveBy(&s2, 9, 10);
+	Shape_moveBy(ps3, -1, -2);
+
+	free(ps3);
     /* Loop forever */
 	for(;;);
 }
