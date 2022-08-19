@@ -32,6 +32,11 @@ void Rectangle_ctor(Rectangle * const me,
 					uint16_t w0,uint16_t h0)
 {
 
+	Shape_ctor(&me->super, x0, y0); /*Shape class constructor*/
+
+	/* init attributes added in this class */
+	me->width  = w0;
+	me->height = h0;
 
 }
 
@@ -68,6 +73,11 @@ void Rectangle_draw(Rectangle const * const me){
  */
 uint32_t Rectangle_area(Rectangle const * const me){
 
+	uint32_t rect_area = 0;	/* rectangle area variable */
+
+	rect_area = (uint32_t)me->width * (uint32_t)me->height; /*rectangle area calculated & assigned to value */
+
+	return rect_area; /* rectangle area is returned */
 }
 
 
