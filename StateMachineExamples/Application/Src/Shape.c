@@ -7,6 +7,16 @@
 
 #include "Shape.h"
 
+
+/*virtual calls late binding*/
+
+/* TODO: Information has to be written here */
+static void Shape_draw(Shape const * const me);
+
+/* TODO: Information has to be written here */
+static uint32_t Shape_area(Shape const * const me);
+
+
 /*********************************************************************
  * @fn      		  - Shape_ctor
  *
@@ -21,6 +31,14 @@
  * @Note              - This function initialises elements of Shape structure
  */
 void Shape_ctor(Shape * const me,int16_t x0,int16_t y0){
+
+	/* TODO: Information has to be written here */
+	static const struct ShapeVtable vtable = {
+		&Shape_draw,
+		&Shape_area
+	};
+
+	me->vptr = &vtable;
 	me->x = x0;       /*Shape structure x element are initiliased to x0*/
 	me->y = y0;		  /*Shape structure y element are initiliased to y0*/
 }
@@ -72,3 +90,38 @@ uint16_t Shape_distanceFrom(Shape const * const me,Shape const * const other){
 
 	return dx + dy;					/* calculate & return sum of two coordinates */
 }
+
+
+
+/* TODO: Information has to be written here */
+void drawGraph(Shape const *graph[]){
+	uint8_t i;
+	for(i=0;graph[i] != (Shape *)0;i++){
+		Shape_draw_vcall(graph[i]); /*polymorphism*/
+	}
+}
+
+
+
+
+/*virtual calls late binding*/
+
+/* TODO: Information has to be written here */
+static void Shape_draw(Shape const * const me){
+	(void)me;  /* TODO: Information has to be written here */
+}
+
+/* TODO: Information has to be written here */
+static uint32_t Shape_area(Shape const * const me){
+	(void)me;  /* TODO: Information has to be written here */
+	return 0U;
+}
+
+
+
+
+
+
+
+
+

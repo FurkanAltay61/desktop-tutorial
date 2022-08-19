@@ -37,7 +37,18 @@ int main(void)
 	Shape_ctor(&s1, 1, 2);
 	Shape_ctor(&s2, 3, 4);
 	Shape_ctor(ps3,  5, 6);
+
+	Rectangle_ctor((Rectangle *)ps3,5, 6, 10, 13);
 	Rectangle_ctor(&r1,1,2,15,10);
+
+	Shape const *graph[]= {
+			&s1,
+			(Shape *)&r1,
+			ps3,
+			(Shape *)0
+	};
+
+	drawGraph(graph);
 
 	Shape_moveBy(&s1, 7, 8);
 	Shape_moveBy(&s2, 9, 10);

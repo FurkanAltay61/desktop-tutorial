@@ -32,7 +32,16 @@ void Rectangle_ctor(Rectangle * const me,
 					uint16_t w0,uint16_t h0)
 {
 
+	/* TODO: Information has to be written here */
+	static const struct ShapeVtable vtable = {
+			(void (*)(Shape const * const me))&Rectangle_draw,
+			(uint32_t (*)(Shape const * const me))Rectangle_area
+	};
+
+
 	Shape_ctor(&me->super, x0, y0); /*Shape class constructor*/
+
+	me->super.vptr = &vtable;
 
 	/* init attributes added in this class */
 	me->width  = w0;

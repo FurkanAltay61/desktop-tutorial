@@ -11,6 +11,12 @@
 #include "stdint.h"
 
 
+
+/*
+ * IMPORTANT LINK FOR UNDERSTANDING POLYMORPHISM : https://www.youtube.com/watch?v=2v_qM5SJDlY&list=PLPW8O6W-1chwyTzI3BHwBLbGQoPFxPAPM&index=13
+ */
+
+
 /*
  * Structure Definition
  */
@@ -19,18 +25,28 @@
  *
  * @brief             -
  *
- * @param[in]         - x - coordinate of Shape's position
- * @param[in]         - y - coordinate of Shape's position
+ * @param[vptr]       - vptr - virtual pointer of structure
+ * @param[x]          - x - coordinate of Shape's position
+ * @param[y]          - y - coordinate of Shape's position
  *
  * @Note              -
 
  */
 
 typedef struct{
-	uint16_t x; /* x - coordinate of Shape's position */
-	uint16_t y; /* y - coordinate of Shape's position */
+	struct ShapeVtable	const * vptr; 	/*virtual pointer*/
+	uint16_t x; 					  	/* x - coordinate of Shape's position */
+	uint16_t y; 					  	/* y - coordinate of Shape's position */
 }Shape;
 
+
+/* TODO: Information has to be written here */
+struct ShapeVtable {
+	/* pointer to draw() method */
+	void (*draw)(Shape const * const me);
+	/* pointer to area() method */
+	uint32_t (*area)(Shape const * const me);
+};
 
 
 /*********************************************************************
@@ -78,5 +94,29 @@ void Shape_moveBy(Shape * const me,int16_t dx,int16_t dy);
  * @Note              - This function calculates absolute distance between two shapes
  */
 uint16_t Shape_distanceFrom(Shape const * const me,Shape const * const other);
+
+
+
+/* TODO: Information has to be written here */
+void drawGraph(Shape const *graph[]);
+
+/*virtual calls late binding*/
+
+/* TODO: Information has to be written here */
+static inline void Shape_draw_vcall(Shape const * const me){
+
+	(*me->vptr->draw)(me);
+}
+
+/* TODO: Information has to be written here */
+static inline uint32_t Shape_area_vcall(Shape const * const me){
+
+	return (*me->vptr->area)(me);
+
+}
+
+
+#define SHAPE_DRAW_VCALL(me) (*(me)->vptr->draw)((me))
+#define SHAPE_AREA_VCALL(me) (*(me)->vptr->area)((me))
 
 #endif /* INC_SHAPE_H_ */
