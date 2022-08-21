@@ -21,6 +21,8 @@
 #include "Shape.h"
 #include "Rectangle.h"
 
+
+
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
@@ -28,6 +30,20 @@
 Shape s1; 		/*Static allocation*/
 Rectangle r1;	/*Static allocation*/
 uint32_t a;
+
+
+
+//#define       TASK_STK_SIZE            512
+//#define       N_TASKS                   10
+//
+//
+//OS_STK        TaskStk[N_TASKS][TASK_STK_SIZE];
+//OS_STK        TaskStartStk[TASK_STK_SIZE];
+//char          TaskData[N_TASKS];
+//OS_EVENT     *RandomSem;
+
+
+void  TaskStart (void *pdata);
 
 int main(void)
 {
@@ -56,7 +72,24 @@ int main(void)
 
 	a = Rectangle_area(&r1);
 
+
 	free(ps3);
+
+//	OSTaskCreate(TaskStart, (void *)0, &TaskStartStk[TASK_STK_SIZE - 1], 0);
+
+
+
     /* Loop forever */
 	for(;;);
+}
+
+
+
+void  TaskStart (void *pdata)
+{
+
+	while(1){
+
+	}
+
 }
