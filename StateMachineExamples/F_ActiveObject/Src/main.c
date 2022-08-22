@@ -20,6 +20,8 @@
 #include "stdlib.h"
 #include "Shape.h"
 #include "Rectangle.h"
+#include "FreeRTOS.h"
+#include "task.h"
 
 
 
@@ -33,14 +35,7 @@ uint32_t a;
 
 
 
-//#define       TASK_STK_SIZE            512
-//#define       N_TASKS                   10
-//
-//
-//OS_STK        TaskStk[N_TASKS][TASK_STK_SIZE];
-//OS_STK        TaskStartStk[TASK_STK_SIZE];
-//char          TaskData[N_TASKS];
-//OS_EVENT     *RandomSem;
+void tempTask(void *arg);
 
 
 void  TaskStart (void *pdata);
@@ -75,9 +70,10 @@ int main(void)
 
 	free(ps3);
 
-//	OSTaskCreate(TaskStart, (void *)0, &TaskStartStk[TASK_STK_SIZE - 1], 0);
 
+	xTaskCreate(tempTask,"Temp_Task",configMINIMAL_STACK_SIZE,NULL,1,NULL);
 
+	vTaskStartScheduler();
 
     /* Loop forever */
 	for(;;);
@@ -85,11 +81,13 @@ int main(void)
 
 
 
-void  TaskStart (void *pdata)
-{
+void tempTask(void *arg){
+
+	static uint8_t a=0;
 
 	while(1){
 
+		a=1;
 	}
-
 }
+
