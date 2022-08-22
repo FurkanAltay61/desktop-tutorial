@@ -1,7 +1,7 @@
 
 
 #include "stm32f407xx_usart_driver.h"
-
+#include "stm32f407xx_rcc_driver.h"
 
 void USART_SetBaudRate(USART_RegDef_t *pUSARTx, uint32_t BaudRate){
 	//Variable to hold the APB clock
