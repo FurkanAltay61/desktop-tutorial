@@ -1,0 +1,6 @@
+"./Application/Src/Rectangle.o"
+"./Application/Src/Shape.o"
+"./Src/main.o"
+"./Src/syscalls.o"
+"./Src/sysmem.o"
+"./Startup/startup_stm32f407vgtx.o"
