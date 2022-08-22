@@ -17,9 +17,9 @@
 * <www.state-machine.com>
 * <info@state-machine.com>
 *****************************************************************************/
-#include "uc_ao.h" /* uC/AO interface */
+#include "freertos_ao.h" /* uC/AO interface */
 
-static char const this_module[] = "uc_ao"; /* this module name for Q_ASSERT() */
+static char const this_module[] = "freertos_ao"; /* this module name for Q_ASSERT() */
 
 /*..........................................................................*/
 void Active_ctor(Active * const me, DispatchHandler dispatch) {
