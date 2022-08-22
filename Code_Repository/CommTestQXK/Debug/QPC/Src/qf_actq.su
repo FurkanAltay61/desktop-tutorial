@@ -1,0 +1,9 @@
+../QPC/Src/qf_actq.c:96:6:QActive_post_	32	static
+../QPC/Src/qf_actq.c:236:6:QActive_postLIFO_	24	static
+../QPC/Src/qf_actq.c:327:13:QActive_get_	24	static
+../QPC/Src/qf_actq.c:393:15:QF_getQueueMin	24	static
+../QPC/Src/qf_actq.c:439:6:QTicker_ctor	16	static
+../QPC/Src/qf_actq.c:462:13:QTicker_init_	16	static
+../QPC/Src/qf_actq.c:477:13:QTicker_dispatch_	24	static
+../QPC/Src/qf_actq.c:499:13:QTicker_post_	24	static
+../QPC/Src/qf_actq.c:539:13:QTicker_postLIFO_	16	static

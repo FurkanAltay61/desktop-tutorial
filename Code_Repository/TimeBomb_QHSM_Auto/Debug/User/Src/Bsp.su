@@ -1,0 +1,10 @@
+../User/Src/Bsp.c:17:6:App_TimeTickHook	24	static
+../User/Src/Bsp.c:69:6:QV_onIdle	4	static,ignoring_inline_asm
+../User/Src/Bsp.c:78:6:QF_onStartup	8	static
+../User/Src/Bsp.c:83:7:BspGetButtonState	24	static
+../User/Src/Bsp.c:102:6:BspLed1On	8	static
+../User/Src/Bsp.c:105:6:BspLed1Off	8	static
+../User/Src/Bsp.c:109:6:BspLed2On	8	static
+../User/Src/Bsp.c:112:6:BspLed2Off	8	static
+../User/Src/Bsp.c:116:6:BspLed3On	8	static
+../User/Src/Bsp.c:119:6:BspLed3Off	8	static

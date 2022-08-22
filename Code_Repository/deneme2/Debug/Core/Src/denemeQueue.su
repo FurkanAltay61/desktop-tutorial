@@ -1,0 +1,9 @@
+../Core/Src/denemeQueue.c:14:6:Queue_Init	24	static
+../Core/Src/denemeQueue.c:32:6:Queue_Cleanup	16	static
+../Core/Src/denemeQueue.c:36:5:Queue_isFull	16	static
+../Core/Src/denemeQueue.c:41:5:Queue_isEmpty	16	static
+../Core/Src/denemeQueue.c:46:5:Queue_getSize	16	static
+../Core/Src/denemeQueue.c:51:6:Queue_insert	16	static
+../Core/Src/denemeQueue.c:60:5:Queue_remove	24	static
+../Core/Src/denemeQueue.c:70:9:Queue_Create	24	static
+../Core/Src/denemeQueue.c:79:6:Queue_Destroy	16	static

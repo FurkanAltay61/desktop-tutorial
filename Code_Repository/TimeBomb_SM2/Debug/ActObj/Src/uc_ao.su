@@ -1,0 +1,11 @@
+../ActObj/Src/uc_ao.c:27:6:Fsm_ctor	16	static
+../ActObj/Src/uc_ao.c:30:6:Fsm_init	16	static
+../ActObj/Src/uc_ao.c:38:6:Fsm_dispatch	24	static
+../ActObj/Src/uc_ao.c:53:6:Active_ctor	16	static
+../ActObj/Src/uc_ao.c:59:13:Active_eventLoop	24	static
+../ActObj/Src/uc_ao.c:79:6:Active_start	48	static
+../ActObj/Src/uc_ao.c:101:6:Active_post	24	static,ignoring_inline_asm
+../ActObj/Src/uc_ao.c:114:6:TimeEvent_ctor	24	static
+../ActObj/Src/uc_ao.c:136:6:TimeEvent_arm	24	static
+../ActObj/Src/uc_ao.c:144:6:TimeEvent_disarm	16	static
+../ActObj/Src/uc_ao.c:151:6:TimeEvent_tick	16	static

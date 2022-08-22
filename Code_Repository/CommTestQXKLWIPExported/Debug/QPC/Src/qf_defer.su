@@ -1,0 +1,3 @@
+../QPC/Src/qf_defer.c:79:6:QActive_defer	32	static
+../QPC/Src/qf_defer.c:120:6:QActive_recall	24	static
+../QPC/Src/qf_defer.c:189:15:QActive_flushDeferred	24	static

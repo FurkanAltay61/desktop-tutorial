@@ -1,0 +1,10 @@
+../Core/Src/protimer_state_mach.c:48:6:protimer_init	24	static
+../Core/Src/protimer_state_mach.c:59:23:protimer_state_handler_IDLE	16	static
+../Core/Src/protimer_state_mach.c:103:23:protimer_state_handler_TIME_SET	16	static
+../Core/Src/protimer_state_mach.c:153:23:protimer_state_handler_COUNTDOWN	16	static
+../Core/Src/protimer_state_mach.c:195:23:protimer_state_handler_PAUSE	16	static
+../Core/Src/protimer_state_mach.c:239:23:protimer_state_handler_STAT	16	static
+../Core/Src/protimer_state_mach.c:281:13:Display_Time	24	static
+../Core/Src/protimer_state_mach.c:287:13:Display_Message	16	static,ignoring_inline_asm
+../Core/Src/protimer_state_mach.c:292:13:Display_Clear	16	static,ignoring_inline_asm
+../Core/Src/protimer_state_mach.c:297:13:Do_Beep	8	static,ignoring_inline_asm

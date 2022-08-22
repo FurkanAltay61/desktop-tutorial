@@ -1,0 +1,13 @@
+../QPC/Src/qf_port.c:65:6:QF_init	4	static
+../QPC/Src/qf_port.c:69:7:QF_run	8	static
+../QPC/Src/qf_port.c:83:6:QF_stop	8	static
+../QPC/Src/qf_port.c:87:6:QActive_start_	48	static
+../QPC/Src/qf_port.c:125:6:QActive_setAttr	24	static
+../QPC/Src/qf_port.c:139:13:task_function	24	static
+../QPC/Src/qf_port.c:158:6:QActive_postFromISR_	56	static,ignoring_inline_asm
+../QPC/Src/qf_port.c:257:6:QF_publishFromISR_	40	static,ignoring_inline_asm
+../QPC/Src/qf_port.c:329:6:QF_tickXFromISR_	64	static,ignoring_inline_asm
+../QPC/Src/qf_port.c:426:7:QF_newXFromISR_	32	static
+../QPC/Src/qf_port.c:489:6:QF_gcFromISR	40	static,ignoring_inline_asm
+../QPC/Src/qf_port.c:535:6:QMPool_putFromISR	40	static,ignoring_inline_asm
+../QPC/Src/qf_port.c:561:7:QMPool_getFromISR	48	static,ignoring_inline_asm
