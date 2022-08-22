@@ -50,7 +50,6 @@ typedef void (*DispatchHandler)(Active * const me, Event const * const e);
 struct Active {
     uint8_t thread;     /* private thread (the unique uC/OS-II task priority) */
     QueueHandle_t queue;  /* private message queue */
-
     DispatchHandler dispatch; /* pointer to the dispatch() function */
 
     /* active object data added in subclasses of Active */

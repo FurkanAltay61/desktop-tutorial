@@ -40,7 +40,7 @@ static void Active_eventLoop(void *pdata) {
         Event *e; /* pointer to event object ("message") */
 
         /*new*/
-        if(xQueueReceive(me->queue,(void *)&e,(TickType_t)10) == pdPASS){
+        if(xQueueReceive(me->queue,(void *)&e,(TickType_t)portMAX_DELAY) == pdPASS){
 			/* dispatch event to the active object 'me' */
 			(*me->dispatch)(me, e); /* NO BLOCKING! */
         }
