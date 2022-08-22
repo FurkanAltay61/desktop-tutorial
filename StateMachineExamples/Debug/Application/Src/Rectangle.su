@@ -1,3 +1,0 @@
-../Application/Src/Rectangle.c:30:6:Rectangle_ctor	24	static
-../Application/Src/Rectangle.c:66:6:Rectangle_draw	16	static
-../Application/Src/Rectangle.c:83:10:Rectangle_area	24	static

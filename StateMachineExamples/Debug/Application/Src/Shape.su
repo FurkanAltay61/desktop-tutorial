@@ -1,7 +1,0 @@
-C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/StateMachineExamples/Application/Inc/Shape.h:106:20:Shape_draw_vcall	16	static
-../Application/Src/Shape.c:33:6:Shape_ctor	16	static
-../Application/Src/Shape.c:60:6:Shape_moveBy	16	static
-../Application/Src/Shape.c:78:10:Shape_distanceFrom	24	static
-../Application/Src/Shape.c:97:6:drawGraph	24	static
-../Application/Src/Shape.c:110:13:Shape_draw	16	static
-../Application/Src/Shape.c:115:17:Shape_area	16	static
