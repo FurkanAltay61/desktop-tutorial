@@ -31,8 +31,6 @@
 void tempTask(void *arg);
 
 
-void  TaskStart (void *pdata);
-
 int main(void)
 {
 
