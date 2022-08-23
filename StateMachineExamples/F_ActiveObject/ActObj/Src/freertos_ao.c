@@ -65,7 +65,8 @@ void Active_start(Active * const me,
     me->queue = xQueueCreate(uxQueueLength,sizeof((void**)queueSto));
     Q_ASSERT(me->queue); /* queue must be created */
 
-    me->thread = configLIBRARY_LOWEST_INTERRUPT_PRIORITY - 2U - uxPriority; /* uC/OS-II priority */
+    //me->thread = configLIBRARY_LOWEST_INTERRUPT_PRIORITY - 2U - uxPriority; /* uC/OS-II priority */
+    me->thread = uxPriority;
 
    xTaskCreateStatic(Active_eventLoop,"x", ulStackDepth,(void *)me, me->thread, puxStackBuffer, pxTaskBuffer);
 }
