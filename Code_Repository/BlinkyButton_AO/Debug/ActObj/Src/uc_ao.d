@@ -1,5 +1,5 @@
 ActObj/Src/uc_ao.o: ../ActObj/Src/uc_ao.c \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/ActObj/Inc/uc_ao.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/ActObj/Inc/uc_ao.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
@@ -17,7 +17,7 @@ ActObj/Src/uc_ao.o: ../ActObj/Src/uc_ao.c \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/ActObj/Inc/uc_ao.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/ActObj/Inc/uc_ao.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:

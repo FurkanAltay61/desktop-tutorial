@@ -30,7 +30,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/ActObj/Inc/uc_ao.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/ActObj/Inc/uc_ao.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
@@ -49,20 +49,20 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
  ../Core/Inc/retarget.h ../Core/Inc/main.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qpc.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qf_port.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qep_port.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qep.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qxk_port.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qxk.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qequeue.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qmpool.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qpset.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qf.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qxthread.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qassert.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qs_dummy.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/User/Inc/BlinkyButton.h
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qpc.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qf_port.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qep_port.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qep.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qxk_port.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qxk.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qequeue.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qmpool.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qpset.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qf.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qxthread.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qassert.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qs_dummy.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/User/Inc/BlinkyButton.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
@@ -95,7 +95,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/ActObj/Inc/uc_ao.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/ActObj/Inc/uc_ao.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
@@ -115,17 +115,17 @@ C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/ActObj/Inc/uc
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
 ../Core/Inc/retarget.h:
 ../Core/Inc/main.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qpc.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qf_port.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qep_port.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qep.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qxk_port.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qxk.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qequeue.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qmpool.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qpset.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qf.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qxthread.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qassert.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/QPC/Inc/qs_dummy.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/User/Inc/BlinkyButton.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qpc.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qf_port.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qep_port.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qep.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qxk_port.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qxk.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qequeue.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qmpool.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qpset.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qf.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qxthread.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qassert.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/QPC/Inc/qs_dummy.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/User/Inc/BlinkyButton.h:

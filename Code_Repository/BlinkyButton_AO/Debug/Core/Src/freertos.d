@@ -39,7 +39,7 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/ActObj/Inc/uc_ao.h \
+ C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/ActObj/Inc/uc_ao.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
@@ -89,7 +89,7 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/BlinkyButton_AO/ActObj/Inc/uc_ao.h:
+C:/Users/furkan.altay/Documents/GitHub/desktop-tutorial/Code_Repository/BlinkyButton_AO/ActObj/Inc/uc_ao.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:

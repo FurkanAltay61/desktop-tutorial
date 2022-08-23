@@ -66,8 +66,8 @@ all: main-build
 main-build: BlinkyButton_AO.elf secondary-outputs
 
 # Tool invocations
-BlinkyButton_AO.elf BlinkyButton_AO.map: $(OBJS) $(USER_OBJS) C:\Users\furkan.altay\STM32CubeIDE\workspace_1.7.1\BlinkyButton_AO\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BlinkyButton_AO.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\furkan.altay\STM32CubeIDE\workspace_1.7.1\BlinkyButton_AO\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BlinkyButton_AO.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+BlinkyButton_AO.elf BlinkyButton_AO.map: $(OBJS) $(USER_OBJS) C:\Users\furkan.altay\Documents\GitHub\desktop-tutorial\Code_Repository\BlinkyButton_AO\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BlinkyButton_AO.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\furkan.altay\Documents\GitHub\desktop-tutorial\Code_Repository\BlinkyButton_AO\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BlinkyButton_AO.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
