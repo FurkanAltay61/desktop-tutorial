@@ -1,6 +1,7 @@
 /.metadata/
 StateMachineExamples/F_InheritancePolymorphism/Debug/
 StateMachineExamples/F_ActiveObject/Debug/
+StateMachineExamples/F_ActiveObject_v2/Debug/
 Code_Repository/407_printf/Debug/
 Code_Repository/BlinkyButton_AO/Debug/
 Code_Repository/BlinkyButton_SM/Debug/
@@ -28,6 +29,7 @@ Code_Repository/TimeBombExample/Debug/
 
 StateMachineExamples/F_InheritancePolymorphism/.settings/
 StateMachineExamples/F_ActiveObject/.settings/
+StateMachineExamples/F_ActiveObject_v2/.settings/
 Code_Repository/407_printf/.settings/
 Code_Repository/BlinkyButton_AO/.settings/
 Code_Repository/BlinkyButton_SM/.settings/
