@@ -24,8 +24,14 @@ enum EventSignals {
 typedef struct {
 	Active super; /* inherit active base class */
     /* add private data for the AO... */
+	enum {
+
+		OFF_STATE,
+		ON_STATE
+
+	}state; /* the "state" variable */
+
     TimeEvent te;
-    _Bool isLedOn;
     uint32_t blink_time;
 }BlinkyButton;
 

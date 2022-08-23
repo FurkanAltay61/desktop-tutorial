@@ -20,6 +20,77 @@ void BlinkyButton_ctor(BlinkyButton * const me) {
 
 void BlinkyButton_dispatch(BlinkyButton * const me, Event const * const e){
 
+
+
+	if(e->sig == INIT_SIG){
+		BspLedOff();
+		TimeEvent_arm(&me->te, me->blink_time * 3U, 0U);
+		me->state = OFF_STATE;
+		return;
+	}
+
+
+	switch(me->state){
+		case OFF_STATE:{
+			switch(e->sig){
+
+				case TIMEOUT_SIG:{
+					BspLedOn();
+					TimeEvent_arm(&me->te, me->blink_time, 0U);
+					me->state = ON_STATE;
+					break;
+				}
+
+				case BUTTON_PRESSED_SIG:{
+
+					break;
+				}
+
+				case BUTTON_RELEASED_SIG:{
+
+					break;
+				}
+
+				break;
+			}
+			break;
+		}
+
+		case ON_STATE:{
+
+			switch(e->sig){
+
+				case TIMEOUT_SIG:{
+
+					break;
+				}
+
+				case BUTTON_PRESSED_SIG:{
+
+					break;
+				}
+
+				case BUTTON_RELEASED_SIG:{
+
+					break;
+				}
+
+				break;
+			}
+
+			break;
+		}
+
+		default: {
+			Q_ASSERT(0);
+			break;
+		}
+
+	}
+
+
+
+
 	switch(e->sig){
 		case INIT_SIG:{
 			BspLedOff();
