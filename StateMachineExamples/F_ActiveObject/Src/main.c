@@ -76,6 +76,7 @@ int main(void)
    BlinkyButton_ctor(&blinkybutton);									 	/*BlinkyButton constructor function*/
 
    Active_start(AO_BlinkyButton,										 	/*BlinkyButton Active Object*/
+		   	   	"BlinkyButton",												/*Active Object Name*/
 			    configMINIMAL_STACK_SIZE,									/*Stack Size of Related Active Object Dispatcher Task*/
 				tskIDLE_PRIORITY,											/*Priority of Related Active Object Dispatcher Task*/
 				Stack_BlinkyButton,										 	/*Stack Array of Related Active Object Dispatcher Task*/
@@ -152,7 +153,7 @@ void Button_Init(void){
 	GPIOBtn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;					/*GPIO Pin mode is chosen as an input Mode*/
 	GPIOBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;				/*GPIO Pull Up & PullDown Control is chosen as NoPullupNoPullDown which means the pin is in Floating State.*/
-	GPIOBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;					/*GPIO Pin Number is Chosen as "PIN_12"*/
+	GPIOBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;					/*GPIO Pin Number is Chosen as "PIN_0"*/
 	GPIO_Init(&GPIOBtn);													/*GPIO Pin Configured as configuration settings above*/
 
 }
