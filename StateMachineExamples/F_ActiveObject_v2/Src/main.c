@@ -76,6 +76,7 @@ int main(void)
    BlinkyButton_ctor(&blinkybutton);									 	/*BlinkyButton constructor function*/
 
    Active_start(AO_BlinkyButton,										 	/*BlinkyButton Active Object*/
+		        "BinkyButton",												/*Active Object Name*/
 			    configMINIMAL_STACK_SIZE,									/*Stack Size of Related Active Object Dispatcher Task*/
 				tskIDLE_PRIORITY,											/*Priority of Related Active Object Dispatcher Task*/
 				Stack_BlinkyButton,										 	/*Stack Array of Related Active Object Dispatcher Task*/

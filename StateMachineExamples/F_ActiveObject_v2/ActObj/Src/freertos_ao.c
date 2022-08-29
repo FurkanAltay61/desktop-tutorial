@@ -1,23 +1,5 @@
-/*****************************************************************************
-* Active Object pattern implementation based on uC/OS-II (uC/AO)
-*
-*                    Q u a n t u m  L e a P s
-*                    ------------------------
-*                    Modern Embedded Software
-*
-* Copyright (C) 2020 Quantum Leaps, LLC. All rights reserved.
-*
-* SPDX-License-Identifier: APACHE-2.0
-*
-* This software is distributed by Quantum Leaps, LLC under the terms of
-* Apache License Version 2.0, which is the same license used for uC/OS-II RTOS.
-* The text of the license is available at: www.apache.org/licenses/LICENSE-2.0.
-*
-* Contact information:
-* <www.state-machine.com>
-* <info@state-machine.com>
-*****************************************************************************/
-#include "freertos_ao.h" /* uC/AO interface */
+
+#include "freertos_ao.h" /* FreeRTOS/AO Interface */
 
 static char const this_module[] = "freertos_ao"; /* this module name for Q_ASSERT() */
 
@@ -42,20 +24,33 @@ void Active_ctor(Active * const me, DispatchHandler dispatch) {
     me->dispatch = dispatch; /* attach the dispatch handler for the "me" AO */
 }
 
-/*..........................................................................*/
-/* Thread function for all Active Objects (uC/OS-II task signature) */
-static void Active_eventLoop(void *pdata) {
-    Active *me = (Active *)pdata; /* the AO instance "me" */
 
-    /* initialize the AO */
-    static Event const initEvt = { INIT_SIG };
-    (*me->dispatch)(me, &initEvt);
+/*********************************************************************
+ * @fn      		  - Active_eventLoop
+ *
+ * @brief             -	Active Object Event Loop Function
+ *
+ * @param_type		  - void *	 		: This declaration does not have any type, which means that it can be any type
+ * @param_name	      -	pdata 		    : function parameter
+ *
+ * @return            - void
+ *
+ * @Note              - This function initialises elements of Active Structure
+ */
+
+static void Active_eventLoop(void *pdata) {
+	 Active *me = (Active *)pdata; /* Function parameter is  assigned to Active Object me pointer.*/
+
+
+    static Event const initEvt = { INIT_SIG };	/*The initial event has been created */
+    (*me->dispatch)(me, &initEvt);				/*The initial event is dispatched */
 
     /* event loop ("message pump") */
     while (1) {
         Event *e; /* pointer to event object ("message") */
 
-        /*new*/
+        /*Dispatch the received event , if there is */
+        /* if there is an event in the queue , xqueuereceive function returns pdpass value */
         if(xQueueReceive(me->queue,(void *)&e,(TickType_t)portMAX_DELAY) == pdPASS){
 			/* dispatch event to the active object 'me' */
 			(*me->dispatch)(me, e); /* NO BLOCKING! */
@@ -71,6 +66,10 @@ static void Active_eventLoop(void *pdata) {
  *
  * @param_type		  - Active * const		: Active Pointer Structure with const prefix
  * @param_name	      -	me 					: Active Object me pointer
+ *
+ * @param_type		  - const char * const	: const char pointer
+ * @param_name	      -	ActObjName 			: Active Object Name
+ *
  *
  * @param_type        - uint32_t			: -
  * @param_name		  -	ulStackDepth		: Active Object Task Stack Size
@@ -95,6 +94,7 @@ static void Active_eventLoop(void *pdata) {
  * @Note              - This function initialises elements of Active Structure
  */
 void Active_start(Active * const me,
+				  const char * const ActObjName,
 		  	  	  const uint32_t ulStackDepth,
 				  UBaseType_t uxPriority,
 				  StackType_t * const puxStackBuffer,
@@ -107,13 +107,17 @@ void Active_start(Active * const me,
     Q_ASSERT(me /* AO instance must be provided (cannot be NULL) */
              && (0 < uxPriority) && (uxPriority < configLIBRARY_LOWEST_INTERRUPT_PRIORITY - 2U));
 
+    /*Event queue is created to hold messages*/
     me->queue = xQueueCreate(uxQueueLength,sizeof((void**)queueSto));
+
+    if(me->queue == NULL) {return;} /*Return, if queue creation is failed */
+
     Q_ASSERT(me->queue); /* queue must be created */
 
     //me->thread = configLIBRARY_LOWEST_INTERRUPT_PRIORITY - 2U - uxPriority; /* uC/OS-II priority */
     me->thread = uxPriority;
 
-   xTaskCreateStatic(Active_eventLoop,"x", ulStackDepth,(void *)me, me->thread, puxStackBuffer, pxTaskBuffer);
+   xTaskCreateStatic(Active_eventLoop,ActObjName, ulStackDepth,(void *)me, me->thread, puxStackBuffer, pxTaskBuffer);
 }
 
 
