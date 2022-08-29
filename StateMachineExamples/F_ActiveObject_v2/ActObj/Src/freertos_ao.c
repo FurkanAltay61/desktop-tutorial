@@ -1,7 +1,7 @@
 
 #include "freertos_ao.h" /* FreeRTOS/AO Interface */
 
-static char const this_module[] = "freertos_ao"; /* this module name for Q_ASSERT() */
+
 
 
 /*********************************************************************
@@ -246,3 +246,13 @@ void TimeEvent_tick(void) {
     }
 }
 
+
+
+
+
+void Q_onAssert(char const *module, int loc) {
+    /* TBD: damage control */
+    (void)module; /* avoid the "unused parameter" compiler warning */
+    (void)loc;    /* avoid the "unused parameter" compiler warning */
+//    NVIC_SystemReset();
+}

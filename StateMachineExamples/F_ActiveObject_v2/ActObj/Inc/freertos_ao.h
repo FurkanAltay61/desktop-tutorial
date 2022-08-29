@@ -5,6 +5,9 @@
 #include "FreeRTOS.h"  															       /* uC/OS-II API, port and compile-time configuration */
 #include "queue.h"
 
+
+static char const this_module[] = "freertos_ao"; /* this module name for Q_ASSERT() */
+
 /*---------------------------------------------------------------------------*/
 /* Event facilities... */
 
@@ -192,6 +195,8 @@ void TimeEvent_disarm(TimeEvent * const me);
 /* static (i.e., class-wide) operation */
 void TimeEvent_tick(void);
 
+
+
 /*---------------------------------------------------------------------------*/
 /* Assertion facilities... */
 
@@ -201,5 +206,7 @@ void TimeEvent_tick(void);
     } else (void)0
 
 void Q_onAssert(char const *module, int loc);
+
+
 
 #endif /* UC_AO_H */
