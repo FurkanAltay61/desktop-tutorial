@@ -11,20 +11,34 @@
 #include "Bsp.h"
 
 _Bool BspGetButtonState(void){
-//	return HAL_GPIO_ReadPin(USER_Btn_GPIO_Port,USER_Btn_Pin);
-
 	return GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_NO_0);
 }
 
-void BspLedOn(void){
-//	HAL_GPIO_WritePin(LD1_GPIO_Port,LD1_Pin,GPIO_PIN_SET);
-
+void BspLedOn12(void){
 	GPIO_WriteToOutputPin(GPIOD,GPIO_PIN_NO_12,GPIO_PIN_SET);
 }
-void BspLedOff(void){
-//	HAL_GPIO_WritePin(LD1_GPIO_Port,LD1_Pin,GPIO_PIN_RESET);
-
+void BspLedOff12(void){
 	GPIO_WriteToOutputPin(GPIOD,GPIO_PIN_NO_12,GPIO_PIN_RESET);
+}
+void BspLedOn13(void){
+	GPIO_WriteToOutputPin(GPIOD,GPIO_PIN_NO_13,GPIO_PIN_SET);
+}
+void BspLedOff13(void){
+	GPIO_WriteToOutputPin(GPIOD,GPIO_PIN_NO_13,GPIO_PIN_RESET);
+}
+
+void BspLedOn14(void){
+	GPIO_WriteToOutputPin(GPIOD,GPIO_PIN_NO_14,GPIO_PIN_SET);
+}
+void BspLedOff14(void){
+	GPIO_WriteToOutputPin(GPIOD,GPIO_PIN_NO_14,GPIO_PIN_RESET);
+}
+
+void BspLedOn15(void){
+	GPIO_WriteToOutputPin(GPIOD,GPIO_PIN_NO_15,GPIO_PIN_SET);
+}
+void BspLedOff15(void){
+	GPIO_WriteToOutputPin(GPIOD,GPIO_PIN_NO_15,GPIO_PIN_RESET);
 }
 
 
@@ -68,11 +82,6 @@ void App_TimeTickHook(void) {
 }
 
 
-void Q_onAssert(char const *module, int loc) {
-    /* TBD: damage control */
-    (void)module; /* avoid the "unused parameter" compiler warning */
-    (void)loc;    /* avoid the "unused parameter" compiler warning */
-//    NVIC_SystemReset();
-}
+
 
 

@@ -16,9 +16,18 @@
 
 enum { INITIAL_BLINK_TIME = (OS_TICKS_PER_SEC / 4) };
 
+
+
+
 _Bool BspGetButtonState(void);
-void BspLedOn(void);
-void BspLedOff(void);
+void BspLedOn12(void);
+void BspLedOff12(void);
+void BspLedOn13(void);
+void BspLedOff13(void);
+void BspLedOn14(void);
+void BspLedOff14(void);
+void BspLedOn15(void);
+void BspLedOff15(void);
 
 
 
