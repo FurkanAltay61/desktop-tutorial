@@ -1,26 +1,8 @@
-/*****************************************************************************
-* Active Object pattern implementation based on uC/OS-II (uC/AO)
-*
-*                    Q u a n t u m  L e a P s
-*                    ------------------------
-*                    Modern Embedded Software
-*
-* Copyright (C) 2020 Quantum Leaps, LLC. All rights reserved.
-*
-* SPDX-License-Identifier: APACHE-2.0
-*
-* This software is distributed by Quantum Leaps, LLC under the terms of
-* Apache License Version 2.0, which is the same license used for uC/OS-II RTOS.
-* The text of the license is available at: www.apache.org/licenses/LICENSE-2.0.
-*
-* Contact information:
-* <www.state-machine.com>
-* <info@state-machine.com>
-*****************************************************************************/
 
 
-#ifndef UC_AO_H
-#define UC_AO_H
+
+#ifndef FREERTOS_AO_H
+#define FREERTOS_AO_H
 
 #include "FreeRTOS.h"  															       /* uC/OS-II API, port and compile-time configuration */
 #include "queue.h"
@@ -85,6 +67,9 @@ void Active_ctor(Active * const me, 													/*Active Object me pointer */
  * @param_type		  - Active * const		: Active Pointer Structure with const prefix
  * @param_name	      -	me 					: Active Object me pointer
  *
+ * @param_type		  - const char * const	: const char pointer
+ * @param_name	      -	ActObjName 			: Active Object Name
+ *
  * @param_type        - uint32_t			: -
  * @param_name		  -	ulStackDepth		: Active Object Task Stack Size
  *
@@ -108,6 +93,7 @@ void Active_ctor(Active * const me, 													/*Active Object me pointer */
  * @Note              - This function initialises elements of Active Structure
  */
 void Active_start(Active * const me,													/*Active Object me pointer */
+				  const char * const ActObjName,										/*Active Object Name*/
 		  	  	  const uint32_t ulStackDepth,											/*Active Object Task Stack Size*/
 				  UBaseType_t uxPriority,												/*Active Object Task Priority*/
 				  StackType_t * const puxStackBuffer,									/*Active Object Stack Buffer*/
