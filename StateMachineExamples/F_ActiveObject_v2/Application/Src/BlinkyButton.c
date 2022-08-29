@@ -27,7 +27,6 @@
 void BlinkyButton_ctor(BlinkyButton * const me) {
     Active_ctor(&me->super, (DispatchHandler)&BlinkyButton_dispatch); /*Initiliase the active object structure */
     TimeEvent_ctor(&me->te,TIMEOUT_SIG,&me->super);					  /*Initiliase the TimeoutEvent structure */
-    me->isLedOn = false;											  /*Assign led status as "false" */
     me->blink_time = INITIAL_BLINK_TIME;							  /*Led blink time period is chosen */
 }
 
@@ -52,7 +51,7 @@ void BlinkyButton_dispatch(BlinkyButton * const me, Event const * const e){
 
 
 	if(e->sig == INIT_SIG){
-		BspLedOff();
+		BspLedOff12();
 		TimeEvent_arm(&me->te, me->blink_time * 3U, 0U);
 		me->state = OFF_STATE;
 		return;
@@ -60,11 +59,12 @@ void BlinkyButton_dispatch(BlinkyButton * const me, Event const * const e){
 
 
 	switch(me->state){
+
 		case OFF_STATE:{
 			switch(e->sig){
 
 				case TIMEOUT_SIG:{
-					BspLedOn();
+					BspLedOn13();
 					TimeEvent_arm(&me->te, me->blink_time, 0U);
 					me->state = ON_STATE;
 					break;
@@ -72,10 +72,17 @@ void BlinkyButton_dispatch(BlinkyButton * const me, Event const * const e){
 
 				case BUTTON_PRESSED_SIG:{
 
+					BspLedOn12();
+
+					me->blink_time >>= 1; /*shorten the blink time by factor of 2*/
+					if(me->blink_time == 0){
+						me->blink_time = INITIAL_BLINK_TIME;
+					}
 					break;
 				}
 
 				case BUTTON_RELEASED_SIG:{
+					BspLedOff12();
 
 					break;
 				}
@@ -90,17 +97,25 @@ void BlinkyButton_dispatch(BlinkyButton * const me, Event const * const e){
 			switch(e->sig){
 
 				case TIMEOUT_SIG:{
-
+					BspLedOff13();
+					TimeEvent_arm(&me->te,me->blink_time * 3U, 0U);
+					me->state = OFF_STATE;
 					break;
 				}
 
 				case BUTTON_PRESSED_SIG:{
 
+					BspLedOn13();
+
+					me->blink_time >>= 1; /*shorten the blink time by factor of 2*/
+					if(me->blink_time == 0){
+						me->blink_time = INITIAL_BLINK_TIME;
+					}
 					break;
 				}
 
 				case BUTTON_RELEASED_SIG:{
-
+					BspLedOff13();
 					break;
 				}
 
@@ -117,43 +132,6 @@ void BlinkyButton_dispatch(BlinkyButton * const me, Event const * const e){
 
 	}
 
-
-
-
-	switch(e->sig){
-		case INIT_SIG:{
-			BspLedOff();
-		}
-		case TIMEOUT_SIG:{
-            if (!me->isLedOn) { /* LED not on */
-            	BspLedOn();
-            	me->isLedOn = true;
-                TimeEvent_arm(&me->te, me->blink_time, 0U);
-            }
-            else {  /* LED is on */
-            	BspLedOff();
-            	me->isLedOn = false;
-                TimeEvent_arm(&me->te, me->blink_time * 3U, 0U);
-            }
-			break;
-		}
-		case BUTTON_PRESSED_SIG:{
-			GPIO_WriteToOutputPin(GPIOD,GPIO_PIN_NO_13,GPIO_PIN_SET);
-
-            me->blink_time >>= 1; /* shorten the blink time by factor of 2 */
-            if (me->blink_time == 0U) {
-                me->blink_time = INITIAL_BLINK_TIME;
-            }
-			break;
-		}
-		case BUTTON_RELEASED_SIG:{
-			GPIO_WriteToOutputPin(GPIOD,GPIO_PIN_NO_13,GPIO_PIN_RESET);
-			break;
-		}
-		default: {
-			break;
-		}
-	}
 }
 
 
