@@ -6,7 +6,7 @@
  */
 
 
-#include "BlinkyButton.h"
+#include "TimeBomb.h"
 #include "stm32f407xx_gpio_driver.h"
 #include "Bsp.h"
 
@@ -42,7 +42,7 @@ void BspLedOff15(void){
 }
 
 
-extern Active *AO_BlinkyButton;
+extern Active *AO_TimeBomb;
 
 /* uCOS-II application hooks ===============================================*/
 void App_TimeTickHook(void) {
@@ -71,12 +71,12 @@ void App_TimeTickHook(void) {
         if ((buttons.depressed & BspGetButtonState()) != 0U) { /* is SW1 depressed? */
             /* post the "button-pressed" event from ISR */
             static Event const buttonPressedEvt = {BUTTON_PRESSED_SIG};
-            Active_post(AO_BlinkyButton, &buttonPressedEvt);
+            Active_post(AO_TimeBomb, &buttonPressedEvt);
         }
         else { /* the button is released */
             /* post the "button-released" event from ISR */
             static Event const buttonReleasedEvt = {BUTTON_RELEASED_SIG};
-            Active_post(AO_BlinkyButton, &buttonReleasedEvt);
+            Active_post(AO_TimeBomb, &buttonReleasedEvt);
         }
     }
 }

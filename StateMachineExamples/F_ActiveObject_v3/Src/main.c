@@ -20,7 +20,7 @@
 #include "stdlib.h"
 #include "freertos_ao.h"
 #include "task.h"
-#include "BlinkyButton.h"
+#include "TimeBomb.h"
 #include "stm32f407xx_gpio_driver.h"
 
 
@@ -57,14 +57,14 @@ void Button_Init(void);
 
 
 
-/* The BlinkyButton AO ============================================================*/
+/* The TimeBomb AO ============================================================*/
 
 
-StackType_t Stack_BlinkyButton[configMINIMAL_STACK_SIZE]; 		/*Dedicated Active Object Stack Size*/
-StaticTask_t BlinkyButtonTaskBuffer;							/*Dedicated Active Object Task Buffer holds related task informations*/
-static Event *BlinkyButton_queue[10];							/*Dedicated Active Object Event Queue that holds event posted from different source and passes active object dispatcher function*/
-static BlinkyButton blinkybutton;								/*Dedicated Active Object Structure*/
-Active *AO_BlinkyButton = &blinkybutton.super;					/* ??? */
+StackType_t Stack_TimeBomb[configMINIMAL_STACK_SIZE]; 		/*Dedicated Active Object Stack Size*/
+StaticTask_t TimeBombTaskBuffer;							/*Dedicated Active Object Task Buffer holds related task informations*/
+static Event *TimeBomb_queue[10];							/*Dedicated Active Object Event Queue that holds event posted from different source and passes active object dispatcher function*/
+static TimeBomb timebomb;								/*Dedicated Active Object Structure*/
+Active *AO_TimeBomb = &timebomb.super;					/* ??? */
 
 
 int main(void)
@@ -73,16 +73,16 @@ int main(void)
 
    Button_Init();														 	/*Button Configuration Function*/
 
-   BlinkyButton_ctor(&blinkybutton);									 	/*BlinkyButton constructor function*/
+   TimeBomb_ctor(&timebomb);									 			/*TimeBomb constructor function*/
 
-   Active_start(AO_BlinkyButton,										 	/*BlinkyButton Active Object*/
+   Active_start(AO_TimeBomb,										 		/*TimeBomb Active Object*/
 		        "BinkyButton",												/*Active Object Name*/
 			    configMINIMAL_STACK_SIZE,									/*Stack Size of Related Active Object Dispatcher Task*/
 				tskIDLE_PRIORITY,											/*Priority of Related Active Object Dispatcher Task*/
-				Stack_BlinkyButton,										 	/*Stack Array of Related Active Object Dispatcher Task*/
-				&BlinkyButtonTaskBuffer,									/*TaskBuffer of Related Active Object*/
-				BlinkyButton_queue,										 	/*Queue of Related Active Object*/
-				sizeof(BlinkyButton_queue)/sizeof(BlinkyButton_queue[0])); 	/*Queue Size of Related Active Object*/
+				Stack_TimeBomb,										 		/*Stack Array of Related Active Object Dispatcher Task*/
+				&TimeBombTaskBuffer,										/*TaskBuffer of Related Active Object*/
+				TimeBomb_queue,										 		/*Queue of Related Active Object*/
+				sizeof(TimeBomb_queue)/sizeof(TimeBomb_queue[0])); 			/*Queue Size of Related Active Object*/
 
 	vTaskStartScheduler();													/*RTOS Scheduler Start Function*/
 

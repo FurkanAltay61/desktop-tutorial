@@ -1,12 +1,12 @@
 /*
- * BlinkyButton.h
+ * TimeBomb.h
  *
  *  Created on: May 11, 2022
  *      Author: furkan.altay
  */
 
-#ifndef INC_BLINKYBUTTON_H_
-#define INC_BLINKYBUTTON_H_
+#ifndef INC_TIMEBOMB_H_
+#define INC_TIMEBOMB_H_
 
 
 #include "freertos_ao.h"
@@ -33,39 +33,39 @@ typedef struct {
 
     TimeEvent te;
     uint32_t blink_time;
-}BlinkyButton;
+} TimeBomb;
 
 
 /*********************************************************************
- * @fn      		  - BlinkyButton_dispatch
+ * @fn      		  - TimeBomb_dispatch
  *
- * @brief             -	Blinky Button Dispatch Function
+ * @brief             -	TimeBomb Dispatch Function
  *
- * @param_type		  - BlinkyButton *  : Blinky Button Structure
- * @param_name	      -	me 		 		: Blinky Button Instance
+ * @param_type		  - TimeBomb *  : TimeBomb Structure
+ * @param_name	      -	me 		 	: TimeBomb Instance
  *
- * @param_type		  - Event 			: Event Enumarations
- * @param_name        - e 				: Event Instance
+ * @param_type		  - Event 		: Event Enumarations
+ * @param_name        - e 			: Event Instance
  *
  * @return            - void
  *
  * @Note              - This function dispatch events on message queue
  */
-void BlinkyButton_dispatch(BlinkyButton * const me, Event const * const e);
+void  TimeBomb_dispatch( TimeBomb * const me, Event const * const e);
 
 /*********************************************************************
- * @fn      		  - BlinkyButton_ctor
+ * @fn      		  -  TimeBomb_ctor
  *
- * @brief             -	Blinky Button Constructor Function
+ * @brief             -	TimeBomb Constructor Function
  *
- * @param_type		  - BlinkyButton 	: Blinky Button Structure
- * @param_name	      -	me 		 		: Blinky Button Strcuture Instance
+ * @param_type		  -  TimeBomb 	: TimeBomb Structure
+ * @param_name	      -	me 		 	: TimeBomb Strcuture Instance
  *
  * @return            - void
  *
- * @Note              - This function initialises elements of Blinky Button Structure
+ * @Note              - This function initialises elements of TimeBomb Structure
  */
-void BlinkyButton_ctor(BlinkyButton * const me);
+void  TimeBomb_ctor( TimeBomb * const me);
 
 
 /*********************************************************************
@@ -82,4 +82,4 @@ void BlinkyButton_ctor(BlinkyButton * const me);
  */
 void App_TimeTickHook(void);
 
-#endif /* INC_BLINKYBUTTON_H_ */
+#endif /* INC_TIMEBOMB_H_ */
