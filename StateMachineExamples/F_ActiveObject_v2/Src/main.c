@@ -87,7 +87,7 @@ int main(void)
 	vTaskStartScheduler();													/*RTOS Scheduler Start Function*/
 
     /* Loop forever */
-	for(;;);
+	for(;;);																/*We never came here */
 }
 
 
