@@ -37,42 +37,50 @@ https://www.state-machine.com/qpc/exa.html</documentation>
    <statechart properties="0x01">
     <!--${AOs::Blinky::SM::initial}-->
     <initial target="../1">
-     <action brief="Led12=ON;"/>
      <initial_glyph conn="30,6,5,1,54,12,-14">
       <action box="0,-2,10,2"/>
      </initial_glyph>
     </initial>
     <!--${AOs::Blinky::SM::Wait-For-Button}-->
     <state name="Wait-For-Button">
+     <entry brief="Led12=ON;"/>
+     <exit brief="Led12=OFF;"/>
      <!--${AOs::Blinky::SM::Wait-For-Button::BUTTON_PRESSED}-->
      <tran trig="BUTTON_PRESSED" target="../../2">
-      <action brief="Led12 = OFF, Led13 = ON,ArmTimer = 0.5sec; blink_cntr=3;"/>
+      <action brief="blink_cntr=3;"/>
       <tran_glyph conn="30,22,3,1,54,28,-14">
        <action box="0,-2,27,7"/>
       </tran_glyph>
      </tran>
-     <state_glyph node="30,13,40,19"/>
+     <state_glyph node="30,13,40,19">
+      <entry box="1,2,13,2"/>
+      <exit box="1,4,13,2"/>
+     </state_glyph>
     </state>
     <!--${AOs::Blinky::SM::Blink}-->
     <state name="Blink">
+     <entry brief="Led13=ON; ArmTimer=0.5sec;"/>
+     <exit brief="Led13=OFF; "/>
      <!--${AOs::Blinky::SM::Blink::TIMEOUT}-->
      <tran trig="TIMEOUT" target="../../3">
-      <action brief="Led13 = OFF; ArmTimer = 0.5sec;"/>
       <tran_glyph conn="30,58,3,1,47,31,-7">
-       <action box="0,-2,21,4"/>
+       <action box="0,-2,24,4"/>
       </tran_glyph>
      </tran>
-     <state_glyph node="30,48,40,21"/>
+     <state_glyph node="30,48,40,21">
+      <entry box="1,2,25,2"/>
+      <exit box="1,4,12,2"/>
+     </state_glyph>
     </state>
     <!--${AOs::Blinky::SM::Pause}-->
     <state name="Pause">
+     <entry brief="ArmTimer = 0.5sec;"/>
      <!--${AOs::Blinky::SM::Pause::TIMEOUT}-->
      <tran trig="TIMEOUT">
       <action brief="--blinkctr;"/>
       <!--${AOs::Blinky::SM::Pause::TIMEOUT::[blink_cntr>0]}-->
       <choice target="../../../2">
        <guard brief="blink_cntr &gt; 0"/>
-       <action brief="Led13=ON; ArmTimer=0.5sec;"/>
        <choice_glyph conn="84,96,4,1,-42,-14">
         <action box="1,-8,20,5"/>
        </choice_glyph>
@@ -80,7 +88,6 @@ https://www.state-machine.com/qpc/exa.html</documentation>
       <!--${AOs::Blinky::SM::Pause::TIMEOUT::[else]}-->
       <choice target="../../../4">
        <guard brief="else"/>
-       <action brief="All-leds-on"/>
        <choice_glyph conn="84,96,4,1,35,-14">
         <action box="1,4,17,3"/>
        </choice_glyph>
@@ -89,11 +96,16 @@ https://www.state-machine.com/qpc/exa.html</documentation>
        <action box="0,-2,20,4"/>
       </tran_glyph>
      </tran>
-     <state_glyph node="30,87,40,20"/>
+     <state_glyph node="30,87,40,20">
+      <entry box="1,2,22,2"/>
+     </state_glyph>
     </state>
     <!--${AOs::Blinky::SM::Boom}-->
     <state name="Boom">
-     <state_glyph node="30,124,40,20"/>
+     <entry brief="All-leds-on"/>
+     <state_glyph node="30,124,40,20">
+      <entry box="1,2,14,2"/>
+     </state_glyph>
     </state>
     <state_diagram size="153,164"/>
    </statechart>
