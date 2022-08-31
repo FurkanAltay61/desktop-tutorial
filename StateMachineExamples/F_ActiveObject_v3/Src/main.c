@@ -124,6 +124,9 @@ void Led_Init(void){
 	GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;					/*GPIO Pin Number is Chosen as "PIN_13"*/
 	GPIO_Init(&GpioLed);													/*GPIO Pin Configured as configuration settings above*/
 
+	GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_14;					/*GPIO Pin Number is Chosen as "PIN_14"*/
+	GPIO_Init(&GpioLed);													/*GPIO Pin Configured as configuration settings above*/
+
 	GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_15;					/*GPIO Pin Number is Chosen as "PIN_15"*/
 	GPIO_Init(&GpioLed);													/*GPIO Pin Configured as configuration settings above*/
 }
@@ -174,7 +177,7 @@ void Button_Init(void){
  *						User Can Write Own Functions to Test RTOS Kernel System Working Performance or Period.
  */
 void vApplicationTickHook( void ){
-	GPIO_ToggleOutputPin(GPIOD,GPIO_PIN_NO_15);	 /*GPIO_15 Pin is Toggled for Testing/Debugging Purpose*/
+	//GPIO_ToggleOutputPin(GPIOD,GPIO_PIN_NO_15);	 /*GPIO_15 Pin is Toggled for Testing/Debugging Purpose*/
 	App_TimeTickHook();							 /*TimeTickHook Function is called to process all Freertos/AO time events.*/
 }
 
