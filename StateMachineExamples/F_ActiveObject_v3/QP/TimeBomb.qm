@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model version="5.2.1" links="1">
+<model version="5.1.1" links="1">
  <documentation>About this example:
 -------------------
 Simple &quot;Blinky&quot; console application for workstations (Windows, Linux, MacOS)
@@ -35,67 +35,23 @@ https://www.state-machine.com/qpc/exa.html</documentation>
    <attribute name="timeEvt" type="QTimeEvt" visibility="0x02" properties="0x00"/>
    <!--${AOs::Blinky::SM}-->
    <statechart properties="0x01">
-    <!--${AOs::Blinky::SM::initial}-->
-    <initial target="../1">
-     <action brief="Led12On;"/>
-     <initial_glyph conn="13,4,5,1,36,7,-7">
-      <action box="0,-2,15,4"/>
-     </initial_glyph>
-    </initial>
-    <!--${AOs::Blinky::SM::wait-for-button}-->
-    <state name="wait-for-button">
-     <!--${AOs::Blinky::SM::wait-for-button::BUTTON_PRESSED}-->
-     <tran trig="BUTTON_PRESSED" target="../../2">
-      <action brief="Led12=OFF;Led13=ON;Arm-Te-for-1/2-second;Blink_cntr=3;"/>
-      <tran_glyph conn="10,19,3,1,39,18,-7">
-       <action box="0,-2,32,5"/>
-      </tran_glyph>
-     </tran>
-     <state_glyph node="10,7,32,23"/>
+    <!--${AOs::Blinky::SM::Wait-For-Button}-->
+    <state name="Wait-For-Button">
+     <state_glyph node="30,6,40,26"/>
     </state>
     <!--${AOs::Blinky::SM::Blink}-->
     <state name="Blink">
-     <!--${AOs::Blinky::SM::Blink::TIMEOUT}-->
-     <tran trig="TIMEOUT" target="../../3">
-      <action brief="Led13-OFF; arm-TE-for-1/2sec"/>
-      <tran_glyph conn="10,45,3,1,39,28,-7">
-       <action box="0,-2,20,4"/>
-      </tran_glyph>
-     </tran>
-     <state_glyph node="10,36,32,26"/>
+     <state_glyph node="30,40,40,29"/>
     </state>
     <!--${AOs::Blinky::SM::Pause}-->
     <state name="Pause">
-     <!--${AOs::Blinky::SM::Pause::TIMEOUT}-->
-     <tran trig="TIMEOUT">
-      <action brief="--blink_cntr;"/>
-      <!--${AOs::Blinky::SM::Pause::TIMEOUT::[blink_cntr>0]}-->
-      <choice target="../../../2">
-       <guard brief="blink_cntr &gt; 0"/>
-       <action brief="Led13=ON;ArmTE=1/2sec;"/>
-       <choice_glyph conn="58,78,4,1,-37,-16">
-        <action box="0,-9,20,5"/>
-       </choice_glyph>
-      </choice>
-      <!--${AOs::Blinky::SM::Pause::TIMEOUT::[else]}-->
-      <choice target="../../../4">
-       <guard brief="else"/>
-       <action brief="ALL-Leds-On"/>
-       <choice_glyph conn="58,78,4,1,31,-16">
-        <action box="0,5,16,3"/>
-       </choice_glyph>
-      </choice>
-      <tran_glyph conn="10,78,3,-1,48">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <state_glyph node="10,71,32,23"/>
+     <state_glyph node="30,79,40,28"/>
     </state>
-    <!--${AOs::Blinky::SM::boom}-->
-    <state name="boom">
-     <state_glyph node="10,104,32,19"/>
+    <!--${AOs::Blinky::SM::Boom}-->
+    <state name="Boom">
+     <state_glyph node="30,120,40,28"/>
     </state>
-    <state_diagram size="83,129"/>
+    <state_diagram size="153,164"/>
    </statechart>
   </class>
   <!--${AOs::Blinky_ctor}-->
@@ -339,17 +295,14 @@ LINK  := gcc    # for C programs
 ifeq ($(OS),Windows_NT)
     MKDIR      := mkdir
     RM         := rm
-    RMDIR      := rmdir
     TARGET_EXT := .exe
 else ifeq ($(OSTYPE),cygwin)
     MKDIR      := mkdir -p
     RM         := rm -f
-    RMDIR      := rmdir
     TARGET_EXT := .exe
 else
     MKDIR      := mkdir -p
     RM         := rm -f
-    RMDIR      := rmdir
     TARGET_EXT :=
 endif
 
@@ -360,7 +313,7 @@ ifeq (rel, $(CONF)) # Release configuration ..................................
 
 BIN_DIR := build_rel
 # gcc options:
-CFLAGS  = -c -O3 -fno-pie -std=c11 -pedantic -Wall -Wextra -W \
+CFLAGS  = -c -O3 -fno-pie -std=c99 -pedantic -Wall -Wextra -W \
     $(INCLUDES) $(DEFINES) -DNDEBUG
 
 CPPFLAGS = -c -O3 -fno-pie -std=c++11 -pedantic -Wall -Wextra \
@@ -375,7 +328,7 @@ C_SRCS   += $(QS_SRCS)
 VPATH    += $(QPC)/src/qs
 
 # gcc options:
-CFLAGS  = -c -g -O -fno-pie -std=c11 -pedantic -Wall -Wextra -W \
+CFLAGS  = -c -g -O -fno-pie -std=c99 -pedantic -Wall -Wextra -W \
     $(INCLUDES) $(DEFINES) -DQ_SPY
 
 CPPFLAGS = -c -g -O -fno-pie -std=c++11 -pedantic -Wall -Wextra \
@@ -387,7 +340,7 @@ else # default Debug configuration .........................................
 BIN_DIR := build
 
 # gcc options:
-CFLAGS  = -c -g -O -fno-pie -std=c11 -pedantic -Wall -Wextra -W \
+CFLAGS  = -c -g -O -fno-pie -std=c99 -pedantic -Wall -Wextra -W \
     $(INCLUDES) $(DEFINES)
 
 CPPFLAGS = -c -g -O -fno-pie -std=c++11 -pedantic -Wall -Wextra \
@@ -396,9 +349,7 @@ CPPFLAGS = -c -g -O -fno-pie -std=c++11 -pedantic -Wall -Wextra \
 
 endif  # .....................................................................
 
-ifndef GCC_OLD
-    LINKFLAGS := -no-pie
-endif
+LINKFLAGS := -no-pie
 
 #-----------------------------------------------------------------------------
 C_OBJS       := $(patsubst %.c,%.o,   $(C_SRCS))
@@ -449,8 +400,9 @@ endif
 .PHONY : clean show
 
 clean :
-    $(RM) $(BIN_DIR)/*.*
-    $(RMDIR) $(BIN_DIR)
+    -$(RM) $(BIN_DIR)/*.o \
+    $(BIN_DIR)/*.d \
+    $(TARGET_EXE)
 
 show :
     @echo PROJECT      = $(PROJECT)
