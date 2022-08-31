@@ -25,14 +25,14 @@ typedef struct {
 	Active super; /* inherit active base class */
     /* add private data for the AO... */
 	enum {
-
-		OFF_STATE,
-		ON_STATE
-
+		WAIT4BUTTON_STATE,
+		BLINK_STATE,
+		PAUSE_STATE,
+		BOOM_STATE
 	}state; /* the "state" variable */
 
     TimeEvent te;
-    uint32_t blink_time;
+    uint32_t blink_cntr;
 } TimeBomb;
 
 
