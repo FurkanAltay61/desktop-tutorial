@@ -21,32 +21,31 @@ enum EventSignals {
 };
 
 
+typedef struct TimeBomb TimeBomb;
+
 typedef enum {
 	TRAN_STATUS,
 	HANDLED_STATUS,
 	IGNORED_STATUS,
 	INIT_STATUS
-}Status;
+}State;
 
+typedef State (*StateHandler)(TimeBomb * const me, Event const * const e);
 
+#define TRAN(target_) (me->state = (target_) , TRAN_STATUS)
 
-typedef struct {
+struct TimeBomb{
 	Active super; /* inherit active base class */
     /* add private data for the AO... */
-	enum {
-		WAIT4BUTTON_STATE,
-		BLINK_STATE,
-		PAUSE_STATE,
-		BOOM_STATE,
 
-		/*......*/
-		MAX_STATE,
-
-	}state; /* the "state" variable */
+	StateHandler state;
 
     TimeEvent te;
     uint32_t blink_cntr;
-} TimeBomb;
+};
+
+
+
 
 
 
