@@ -21,6 +21,14 @@ enum EventSignals {
 };
 
 
+typedef enum {
+	TRAN_STATUS,
+	HANDLED_STATUS,
+	IGNORED_STATUS,
+	INIT_STATUS
+}Status;
+
+
 
 typedef struct {
 	Active super; /* inherit active base class */
