@@ -26,6 +26,27 @@ typedef struct {
     																					/* event parameters added in subclasses of Event */
 } Event;
 
+
+/*---------------------------------------------------------------------------*/
+/*Finite State Machine Facilities.. */
+
+typedef struct Fsm Fsm;
+
+typedef enum { TRAN_STATUS, HANDLED_STATUS, IGNORED_STATUS, INIT_STATUS } State;
+
+typedef State (*StateHandler)(TimeBomb * const me, Event const * const e);
+
+#define TRAN(target_) (me->state = (target_) , TRAN_STATUS)
+
+struct Fsm{
+	StateHandler state;
+};
+
+void Fsm_ctor( Fsm * const me, StateHandler initial);
+void Fsm_init(Fsm * const me, Event const * const e);
+void Fsm_dispatch(Fsm * const me, Event const * const e);
+
+
 /*---------------------------------------------------------------------------*/
 /* Actvie Object facilities... */
 
@@ -35,6 +56,7 @@ typedef void (*DispatchHandler)(Active * const me, Event const * const e);				/*
 
 /* Active Object base class */
 struct Active {
+	Fsm	super;																			/*Fsm inherited*/
     uint8_t thread;     																/* private thread (the unique uC/OS-II task priority) */
     QueueHandle_t queue;  															    /* private message queue */
     DispatchHandler dispatch; 															/* pointer to the dispatch() function */
