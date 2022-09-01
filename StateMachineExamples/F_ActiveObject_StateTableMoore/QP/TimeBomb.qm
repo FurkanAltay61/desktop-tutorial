@@ -49,7 +49,7 @@ https://www.state-machine.com/qpc/exa.html</documentation>
      <tran trig="BUTTON_PRESSED" target="../../2">
       <action brief="blink_cntr=3;"/>
       <tran_glyph conn="30,22,3,1,54,28,-14">
-       <action box="0,-2,27,7"/>
+       <action box="0,-2,17,4"/>
       </tran_glyph>
      </tran>
      <state_glyph node="30,13,40,19">
