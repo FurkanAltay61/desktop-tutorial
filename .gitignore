@@ -6,6 +6,7 @@ StateMachineExamples/F_ActiveObject_v3/Debug/
 StateMachineExamples/F_ActiveObject_StateTable/Debug/
 StateMachineExamples/F_ActiveObject_StateTableMoore/Debug/
 StateMachineExamples/F_ActiveObject_Optimal/Debug/
+FreeRTOS_TAD_logs/
 
 
 Code_Repository/407_printf/Debug/
