@@ -14,8 +14,10 @@ static char const this_module[] = "freertos_ao"; /* this module name for Q_ASSER
 typedef uint16_t Signal; 																/* event signal */
 
 enum ReservedSignals {
-    INIT_SIG, 																			/* dispatched to AO before entering event-loop */
-    USER_SIG  																			/* first signal available to the users */
+    INIT_SIG, 					/* dispatched to AO before entering event-loop */
+    ENTRY_SIG,  				/* first signal available to the users */
+	EXIT_SIG,					/*for triggering the exit action form at state*/
+	USER_SIG					/*first signal avaliable to users */
 };
 
 /* Event base class */
