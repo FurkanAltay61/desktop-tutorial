@@ -34,9 +34,9 @@ typedef struct Fsm Fsm;
 
 typedef enum { TRAN_STATUS, HANDLED_STATUS, IGNORED_STATUS, INIT_STATUS } State;
 
-typedef State (*StateHandler)(TimeBomb * const me, Event const * const e);
+typedef State (*StateHandler)(Fsm * const me, Event const * const e);
 
-#define TRAN(target_) (me->state = (target_) , TRAN_STATUS)
+#define TRAN(target_) (((Fsm *)me)->state = (StateHandler)(target_) , TRAN_STATUS)
 
 struct Fsm{
 	StateHandler state;
@@ -82,7 +82,7 @@ struct Active {
  */
 
 void Active_ctor(Active * const me, 													/*Active Object me pointer */
-				 DispatchHandler dispatch);												/*Active Object Dispatch Handler*/
+				 StateHandler initial);												/*Active Object Dispatch Handler*/
 
 /*********************************************************************
  * @fn      		  - Active_start

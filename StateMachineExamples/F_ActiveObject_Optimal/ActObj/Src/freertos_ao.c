@@ -4,6 +4,37 @@
 
 
 
+
+/*---------------------------------------------------------------------------*/
+/*Finite State Machine Facilities.. */
+
+static Event const entryEvt = {ENTRY_SIG};
+static Event const exitEvt =  {EXIT_SIG};
+
+void Fsm_ctor( Fsm * const me, StateHandler initial){
+	me->state = initial;
+}
+void Fsm_init(Fsm * const me, Event const * const e){
+	Q_ASSERT((me->state != (StateHandler)0));
+	(*me->state)(me,e);
+	(*me->state)(me,&entryEvt);
+}
+void Fsm_dispatch(Fsm * const me, Event const * const e){
+
+	State stat;
+	StateHandler prev_state = me->state;	/*save for later*/
+
+	Q_ASSERT((me->state != (StateHandler)0));
+	stat = (*me->state)(me,e);
+
+	if(stat == TRAN_STATUS){		/*transition taken?*/
+		(*prev_state)(me,&exitEvt);
+		(*me->state)(me,&entryEvt);
+	}
+}
+
+
+
 /*********************************************************************
  * @fn      		  - Active_ctor
  *
@@ -20,8 +51,8 @@
  * @Note              - This function initialises elements of Active Structure
  */
 
-void Active_ctor(Active * const me, DispatchHandler dispatch) {
-    me->dispatch = dispatch; /* attach the dispatch handler for the "me" AO */
+void Active_ctor(Active * const me,StateHandler initial) {
+	Fsm_ctor(&me->super, initial);
 }
 
 
@@ -39,11 +70,11 @@ void Active_ctor(Active * const me, DispatchHandler dispatch) {
  */
 
 static void Active_eventLoop(void *pdata) {
-	 Active *me = (Active *)pdata; /* Function parameter is  assigned to Active Object me pointer.*/
 
+	Active *me = (Active *)pdata; /* Function parameter is  assigned to Active Object me pointer.*/
 
-    static Event const initEvt = { INIT_SIG };	/*The initial event has been created */
-    (*me->dispatch)(me, &initEvt);				/*The initial event is dispatched */
+	/*Initiliase the AO*/
+	Fsm_init(&me->super,(Event *)0);
 
     /* event loop ("message pump") */
     while (1) {
@@ -53,7 +84,7 @@ static void Active_eventLoop(void *pdata) {
         /* if there is an event in the queue , xqueuereceive function returns pdpass value */
         if(xQueueReceive(me->queue,(void *)&e,(TickType_t)portMAX_DELAY) == pdPASS){
 			/* dispatch event to the active object 'me' */
-			(*me->dispatch)(me, e); /* NO BLOCKING! */
+        	Fsm_dispatch(&me->super, e);	 /* NO BLOCKING! */
         }
 
     }

@@ -9,6 +9,8 @@
 #include "TimeBomb.h"
 #include "stm32f407xx_gpio_driver.h"
 #include "Bsp.h"
+#include "stdlib.h"
+#include "string.h"
 
 _Bool BspGetButtonState(void){
 	return GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_NO_0);
@@ -70,6 +72,7 @@ void App_TimeTickHook(void) {
     if ((tmp & BspGetButtonState()) != 0U) {  /* debounced SW1 state changed? */
         if ((buttons.depressed & BspGetButtonState()) != 0U) { /* is SW1 depressed? */
             /* post the "button-pressed" event from ISR */
+
             static Event const buttonPressedEvt = {BUTTON_PRESSED_SIG};
             Active_post(AO_TimeBomb, &buttonPressedEvt);
         }

@@ -23,50 +23,16 @@ enum EventSignals {
 
 typedef struct TimeBomb TimeBomb;
 
-typedef enum {
-	TRAN_STATUS,
-	HANDLED_STATUS,
-	IGNORED_STATUS,
-	INIT_STATUS
-}State;
-
-typedef State (*StateHandler)(TimeBomb * const me, Event const * const e);
-
-#define TRAN(target_) (me->state = (target_) , TRAN_STATUS)
-
 struct TimeBomb{
 	Active super; /* inherit active base class */
     /* add private data for the AO... */
 
-	StateHandler state;
-
     TimeEvent te;
     uint32_t blink_cntr;
+    char *p_msg;
 };
 
 
-
-
-
-
-
-
-/*********************************************************************
- * @fn      		  - TimeBomb_dispatch
- *
- * @brief             -	TimeBomb Dispatch Function
- *
- * @param_type		  - TimeBomb *  : TimeBomb Structure
- * @param_name	      -	me 		 	: TimeBomb Instance
- *
- * @param_type		  - Event 		: Event Enumarations
- * @param_name        - e 			: Event Instance
- *
- * @return            - void
- *
- * @Note              - This function dispatch events on message queue
- */
-void TimeBomb_dispatch(TimeBomb * const me, Event const * const e);
 
 /*********************************************************************
  * @fn      		  -  TimeBomb_ctor

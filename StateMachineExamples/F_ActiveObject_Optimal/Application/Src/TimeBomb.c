@@ -148,35 +148,11 @@ State TimeBomb_Boom(TimeBomb * const me, Event const * const e) {
  * @Note              - This function initialises elements of TimeBomb Structure
  */
 void TimeBomb_ctor(TimeBomb * const me) {
-    Active_ctor(&me->super, (DispatchHandler)&TimeBomb_dispatch); /*Initiliase the active object structure */
-    TimeEvent_ctor(&me->te,TIMEOUT_SIG,&me->super);				  /*Initiliase the TimeoutEvent structure */
-    me->state = TimeBomb_Initial;
+    Active_ctor(&me->super, (StateHandler)&TimeBomb_Initial); /*Initiliase the active object structure */
+    TimeEvent_ctor(&me->te,TIMEOUT_SIG,&me->super);			  /*Initiliase the TimeoutEvent structure */
 }
 
 
-
-void TimeBomb_dispatch(TimeBomb * const me, Event const * const e){
-	State stat;
-	StateHandler prev_state = me->state;	/*save for later*/
-
-	Q_ASSERT((me->state < (StateHandler)0) && (e->sig < MAX_SIG));
-	stat = (*me->state)(me,e);
-
-	if(stat == TRAN_STATUS){		/*transition taken?*/
-
-		static Event const entryEvt = {ENTRY_SIG};
-		static Event const exitEvt =  {EXIT_SIG};
-
-		Q_ASSERT((me->state < (StateHandler)0));
-
-		if(e->sig != INIT_SIG){
-			(*prev_state)(me,&exitEvt);
-		}
-
-		(*me->state)(me,&entryEvt);
-
-	}
-}
 
 
 
