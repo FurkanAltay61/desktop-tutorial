@@ -146,6 +146,13 @@ void Active_start(Active * const me,													/*Active Object me pointer */
 void Active_post(Active * const me,														/*Active Object me pointer */
 				 Event const * const e);												/*Active Object Event Enum*/
 
+
+
+void Active_Subscribe(Active * const me,														/*Active Object me pointer */
+				 	  	  Event const * const e);												/*Active Object Event Enum*/
+
+void q_New(Event * const e,uint32_t wantedByteSize,uint8_t);
+
 /*---------------------------------------------------------------------------*/
 /* Time Event facilities... */
 

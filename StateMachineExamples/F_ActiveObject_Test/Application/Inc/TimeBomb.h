@@ -21,6 +21,12 @@ enum EventSignals {
 };
 
 
+typedef struct TextEvtTag {
+    Event super;                                          /* derives from QEvt */
+    char *text;                             				/* text to deliver */
+}TextEvt;
+
+
 typedef struct TimeBomb TimeBomb;
 
 struct TimeBomb{

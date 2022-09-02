@@ -173,6 +173,23 @@ void Active_post(Active * const me, Event const * const e) {
 	portYIELD_FROM_ISR(xQueueWoken);
 }
 
+
+
+
+void Active_Subscribe(Active * const me,														/*Active Object me pointer */
+				 	  	  Event const * const e){												/*Active Object Event Enum*/
+
+
+}
+
+
+void q_New(Event * const e,uint32_t wantedByteSize,uint8_t Sig){
+	Event *TempEvent = e;
+
+	TempEvent->sig = Sig;
+}
+
+
 /*--------------------------------------------------------------------------*/
 /* Time Event services... */
 
