@@ -38,29 +38,46 @@ typedef struct {
 }Text;
 
 
-void Create_mem(m_pool *temp);
-_Bool Alan_Tara(void);
+void Create_mem(m_pool *temp,(uint32_t)sizeof(struct x));
+_Bool Alan_Tara(uint32_t size);
 
 int main(void)
 {
 	Text a1;
     /* Loop forever */
 
-	int b= sizeof(a1);
-
-	Create_mem((m_pool *)&a1);
+	_Bool result = Alan_Tara(sizeof(a1));
 	for(;;);
 }
 
 
-void Create_mem(m_pool *temp){
+void Create_mem(m_pool *temp,(uint32_t)sizeof(struct x)){
 
 }
 
 
-_Bool Alan_Tara(void){
+_Bool Alan_Tara(uint32_t size){
+
+	uint32_t memcnt = 0;
+	_Bool result = 1;
 
 	for(uint32_t i=0;i<MAX_CAPACITY;i++){
 
+		  if(Memory_Pool[i] == 0){
+			  memcnt++;
+		  }
+		  else
+		  {
+			  if(memcnt >= size){
+				  result = 1;
+			  }
+			  else{
+				  result = 0;
+			  }
+
+			  memcnt = 0;
+		  }
 	}
+
+	return result;
 }
