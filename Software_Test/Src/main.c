@@ -23,61 +23,68 @@
 #endif
 
 
-#define MAX_CAPACITY 100
+#define MAX_CAPACITY 10
 
-static uint8_t Memory_Pool[MAX_CAPACITY] = {0};
+static uint8_t mPool[MAX_CAPACITY] = {0};
 
-typedef struct {
-	uint32_t *start_addr;
-	uint32_t  mem_size;
-	uint32_t *end_add;
-}m_pool;
+
 
 typedef struct {
-	char msg[20];
+	uint32_t start_addr;
+	uint32_t mem_size;
+	uint32_t end_add;
+}Pool;
+
+typedef struct {
+	uint8_t Sig;
+}Event;
+
+typedef struct {
+	Event Qevt;
+	char TextMsg[20];
 }Text;
 
 
-void Create_mem(m_pool *temp,(uint32_t)sizeof(struct x));
-_Bool Alan_Tara(uint32_t size);
+_Bool Alan_Tara(Text Fmsg , Pool *fPool);
 
 int main(void)
 {
+
 	Text a1;
+	Pool p1;
     /* Loop forever */
 
-	_Bool result = Alan_Tara(sizeof(a1));
+	_Bool result = Alan_Tara(a1,&p1);
 	for(;;);
 }
 
+_Bool Alan_Tara(Text Fmsg , Pool *fPool){
+	uint32_t m_count=0;
+	_Bool durum=1;
 
-void Create_mem(m_pool *temp,(uint32_t)sizeof(struct x)){
+	if(sizeof(Fmsg) < MAX_CAPACITY){
+		for(uint32_t i=0;i<MAX_CAPACITY;i++){
 
-}
+			if(mPool[i] == 0){
+				m_count++;
+			}
+			else{
+				if(m_count > sizeof(Fmsg)){
+					break;
+				}
+				else{
+					durum = 0;
+				}
 
+				m_count = 0;
+			}
 
-_Bool Alan_Tara(uint32_t size){
-
-	uint32_t memcnt = 0;
-	_Bool result = 1;
-
-	for(uint32_t i=0;i<MAX_CAPACITY;i++){
-
-		  if(Memory_Pool[i] == 0){
-			  memcnt++;
-		  }
-		  else
-		  {
-			  if(memcnt >= size){
-				  result = 1;
-			  }
-			  else{
-				  result = 0;
-			  }
-
-			  memcnt = 0;
-		  }
+		}
+	}
+	else{
+		durum = 0;
 	}
 
-	return result;
+	return durum;
 }
+
