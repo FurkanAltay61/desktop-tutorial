@@ -19,7 +19,7 @@ int main(){
 
 
 	while(1){
-		int a = random_number_gen(-10,-20);
+		int a = random_number_gen(1,7);
 	}
 
 }
