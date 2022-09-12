@@ -11,6 +11,19 @@
 #define LENGTH	100
 
 int LinearSearch(const int [],int,int , int *);
+
+
+/*İkili arama tekniği, her karşılaştırmadan sonra sıralanmış bir dizideki elemanların yarısını
+elemektedir. Algoritma, dizinin ortadaki elemanını bulmakta ve bu elemanın değerini arama
+değeriyle karşılaştırmaktadır. Eğer ikisi eşitse, arama değeri bulunmuştur ve o elemanın dizi
+belirteci geri döndürülür. Eğer bu iki değer eşit değilse, problem dizinin yarısını aramaya
+indirgenmiştir. Eğer arama değeri dizinin ortadaki elemanından daha küçükse, dizinin ilk
+yarısı aranır. Aksi takdirde ise dizinin ikinci yarısı aranır. Eğer arama değeri belirlenen alt
+dizide de (orijinal dizinin bir parçası) bulunamazsa, algoritma orijinal dizinin dörtte birinde
+tekrarlanır. Arama, alt dizilerden birinin ortadaki elemanıyla arama değeri eşit olunca ya da
+alt dizi arama değerine eşit olmayan tek bir elemana sahip oluncaya dek (yani arama değeri
+bulunamayıncaya dek) devam eder.*/
+
 int BinarySearch(const int [] , int , int , int, int *);
 
 int main(){
