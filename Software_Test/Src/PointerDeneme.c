@@ -17,7 +17,7 @@
 #define PRINT_CHARACTERS	FALSE
 #define STRING_COPY_EXAMPLE FALSE
 #define CONST_POINTER_USAGE	FALSE
-#define KART_DAGITMA_PROG	FALSE
+#define KART_DAGITMA_PROG	TRUE
 
 
 
@@ -175,7 +175,7 @@ void kar(int _deste[][13]){
 void dagit(const int _deste[][13],const char *_taraf[],const char *_takim[]){
 
 	int satir=0,sutun=0,kart=0;
-	char *taraf = 0, *takim = 0;
+	static char *taraf = 0, *takim = 0;
 
 	for(kart = 1; kart <= 52; kart++){
 
