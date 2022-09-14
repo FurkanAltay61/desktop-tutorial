@@ -71,7 +71,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Inc"/>
-						<entry excluding="PointerDeneme.c|Tekrar.c|Barbut.c|RandomNumber.c|RecursiveSummation.c|mem_pool.c|BubbleSortAdvanced.c|2DArray.c|LinearSearch.c|BubbleSort.c|main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
+						<entry excluding="Pointer_Alistirmalar.c|PointerDeneme.c|Barbut.c|RandomNumber.c|RecursiveSummation.c|mem_pool.c|BubbleSortAdvanced.c|2DArray.c|LinearSearch.c|BubbleSort.c|main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Startup"/>
 					</sourceEntries>
 				</configuration>
@@ -144,7 +144,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Inc"/>
-						<entry excluding="PointerDeneme.c|Tekrar.c|Barbut.c|RandomNumber.c|RecursiveSummation.c|mem_pool.c|BubbleSortAdvanced.c|2DArray.c|LinearSearch.c|BubbleSort.c|main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
+						<entry excluding="Pointer_Alistirmalar.c|PointerDeneme.c|Barbut.c|RandomNumber.c|RecursiveSummation.c|mem_pool.c|BubbleSortAdvanced.c|2DArray.c|LinearSearch.c|BubbleSort.c|main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Startup"/>
 					</sourceEntries>
 				</configuration>

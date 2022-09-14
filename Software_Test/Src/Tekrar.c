@@ -49,7 +49,10 @@ void Distribute(char const [][TEAM],const char * const [],const char * const[]);
 #endif
 
 #if (FUNCTION_POINTER == TRUE)
-
+#define LENGTH 10
+void bublesort(uint8_t [],uint8_t,uint8_t(*)(uint8_t,uint8_t));
+uint8_t increase(const uint8_t ,const uint8_t );
+uint8_t decrease(const uint8_t ,const uint8_t );
 #endif
 
 int main(){
@@ -85,7 +88,14 @@ int main(){
 #endif
 
 #if (FUNCTION_POINTER == TRUE)
+uint8_t choice = 0, temparr[LENGTH]={2,7,3,1,9,5,6,10,32,12};
 
+if(choice == 1){
+	bublesort(temparr,LENGTH,increase);
+}
+else{
+	bublesort(temparr,LENGTH,decrease);
+}
 #endif
 
 	while(1){
@@ -174,7 +184,31 @@ void Distribute(char const _deck[SIDE][TEAM],const char * const _team[],const ch
 
 
 #if (FUNCTION_POINTER == TRUE)
+void bublesort(uint8_t _arr[],uint8_t _len,uint8_t(*compare)(uint8_t _a,uint8_t _b)){
 
+	void Swap(uint8_t *,uint8_t *);
+
+	for(uint8_t i=0;i<_len;i++){
+		for(uint8_t j=0;j<_len -1;j++){
+			if((*compare)(_arr[j],_arr[j+1])){
+				Swap(&_arr[j],&_arr[j+1]);
+			}
+		}
+	}
+}
+uint8_t increase(const uint8_t _a,const uint8_t _b){
+	return _a > _b;
+}
+uint8_t decrease(const uint8_t _a,const uint8_t _b){
+	return _a < _b;
+}
+
+void Swap(uint8_t * _val1,uint8_t *_val2){
+	uint8_t temp;
+	temp = *_val2;
+	*_val2 = *_val1;
+	*_val1 = temp;
+}
 #endif
 
 
