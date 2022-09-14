@@ -17,7 +17,9 @@
 #define PRINT_CHARACTERS	FALSE
 #define STRING_COPY_EXAMPLE FALSE
 #define CONST_POINTER_USAGE	FALSE
-#define KART_DAGITMA_PROG	TRUE
+#define KART_DAGITMA_PROG	FALSE
+#define FUNCTION_POINTER    FALSE
+#define FUNCTION_ARRAY		FALSE
 
 
 
@@ -42,10 +44,28 @@ void Copy2(char *,const char *);
 		 string3[10], string4[] = "GoodBye";
 #endif
 
-
 #if (KART_DAGITMA_PROG == TRUE)
 void kar(int [][13]);
 void dagit(const int [][13],const char *[],const char *[]);
+#endif
+
+#if (FUNCTION_POINTER == TRUE)
+#define LENGTH 10
+/*kabarcikSiralama fonksiyonu,
+bir tamsayı dizisi ve bu dizinin büyüklüğü yanında fonksiyon gösteren (artan ya da azalan
+fonksiyonlarından birini) bir göstericiyi argüman olarak almaktadır. Program, kullanıcının
+sıralamanın artan mı yoksa azalan bir şekilde mi yapılacağını seçmesini isteyen, bir ileti
+yazdırmaktadır.*/
+void bubble(int [],const int, int(*)(int,int));
+
+int increase(int,int);
+int decrease(int,int);
+#endif
+
+#if (FUNCTION_ARRAY == TRUE)
+void func1(int);
+void func2(int);
+void func3(int);
 #endif
 
 int main(){
@@ -81,6 +101,24 @@ int main(){
 	kar(deste);
 	dagit(deste,taraf,takim);
 
+#endif
+
+#if (FUNCTION_POINTER == TRUE)
+	int choice=0,a[LENGTH] = {2,6,4,8,10,12,89,68,45,37};
+
+	if(choice == 1){
+		bubble(a,LENGTH,increase);
+	}
+	else{
+		bubble(a,LENGTH,decrease);
+	}
+#endif
+
+
+#if (FUNCTION_ARRAY == TRUE)
+	void (*f[3])(int) = {func1,func2,func3};
+	uint8_t choice = 0;
+	(*f[choice])(choice);
 #endif
 
 	while(1){ }
@@ -194,5 +232,60 @@ void dagit(const int _deste[][13],const char *_taraf[],const char *_takim[]){
 		}
 
 	}
+}
+#endif
+
+#if (FUNCTION_POINTER == TRUE)
+
+/*NOTE : int(*compare)(int,int)
+Bu, kabarcik fonksiyonuna iki tamsayı parametresi alan ve bir tamsayı sonucu döndüren bir
+fonksiyonu gösteren bir gösterici alacağını söyler. *karsilastir etrafındaki parantezler
+gereklidir, çünkü * fonksiyon parametrelerini içine alan parantezlere göre daha düşük
+önceliğe sahiptir. Eğer parantezleri dahil etmeseydik, bildirim "int *compare(int,int)"
+biçiminde olacaktı ve iki tamsayı parametresi alan ve bir tamsayıyı gösteren bir gösterici
+döndüren bir fonksiyon bildirilmiş olacaktı. */
+
+void bubble(int is[],const int length, int(*compare)(int,int)){
+	int round=0,counter=0;
+	void Swap(int *,int *);
+
+	for(round = 1; round < length;round++){
+		for(counter = 0; counter < length - 1 ; counter++){
+			if((*compare)(is[counter],is[counter+1])){
+				Swap(&is[counter],&is[counter+1]);
+			}
+		}
+	}
+
+}
+
+void Swap(int *val1,int *val2){
+	int temp_val=0;
+
+	temp_val = *val1;
+	*val1 = *val2;
+	*val2 = temp_val;
+}
+
+int increase(int a,int b){
+	return b < a;
+}
+
+int decrease(int a,int b){
+	return b > a;
+}
+
+#endif
+
+
+#if (FUNCTION_ARRAY == TRUE)
+void func1(int a){
+
+}
+void func2(int a){
+
+}
+void func3(int a){
+
 }
 #endif
