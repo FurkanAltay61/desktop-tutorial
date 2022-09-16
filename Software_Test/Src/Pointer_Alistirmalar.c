@@ -11,13 +11,13 @@
 #include "stdlib.h"
 #include "time.h"
 
-#define __NOP()                        __asm volatile ("nop")
+
 
 #define TRUE	1
 #define FALSE   0
 
 #define Q7_9   FALSE
-#define Q7_12  TRUE
+#define Q7_12  FALSE
 
 #if (Q7_9 == TRUE)
 
@@ -38,7 +38,7 @@ void PrintPointerOffsetMethod( const unsigned int *, const unsigned int );
 
 void Shuffle(uint8_t (*)[SIDE], uint8_t *);
 void Distribute(uint8_t (*)[SIDE],uint8_t *,char * const [],char * const []);
-void SearchForTwos(char * const [],const uint8_t);
+void SearchForTwos(uint8_t const [],const uint8_t);
 #endif
 
 int main(){
@@ -126,40 +126,43 @@ void Shuffle(uint8_t (*_deck)[SIDE],uint8_t *_totalcard){
 void Distribute(uint8_t (*deck)[SIDE],uint8_t *_totalcard,char * const _team[],char * const _side[]){
 
 	char *___side = 0, *___team = 0;
-	char *____side[5] = {0},*____team[5] = {0};
+	uint8_t ____side[5] = {0};
 
+	for(uint8_t _card = 0;_card < LENGTH ; _card++){
 
 		for(uint8_t __side = 0;__side < SIDE ; __side++){
 
 			for(uint8_t __team = 0; __team < TEAM ; __team++){
 
-				for(uint8_t _card = 0;_card < *_totalcard ; _card++){
+				if(deck[__team][__side] == _card){
 
-					if(deck[__team][__side] == _card){
+					___side = _side[__side];
+					___team = _team[__team];
 
-						___side = _side[__side];
-						___team = _team[__team];
-
-						____side[_card] = ___side;
-						____team[_card] = ___team;
-
-						__NOP();
-					}
-
+					____side[_card] = __side;
+					__NOP();
 				}
 
 			}
 
 		}
 
-		SearchForTwos(____side,LENGTH);
+	}
+
+	SearchForTwos(____side,LENGTH);
 }
 
-void SearchForTwos(char * const _side[],const uint8_t _len){
+void SearchForTwos(uint8_t const _side[],const uint8_t _len){
+
+	uint8_t twosFreq = 0;
 
 	for(uint8_t i=1;i<=LENGTH;i++){
-
+		if((_side[i] % 2) == 0){
+			twosFreq++;
+		}
 	}
+
+	__NOP();
 
 }
 #endif
