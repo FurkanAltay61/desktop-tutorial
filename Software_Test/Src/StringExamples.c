@@ -16,52 +16,24 @@
 #define TRUE  1
 #define FALSE 0
 
-#define FIG8_2_EX	FALSE
-#define FIG8_4_EX	FALSE
-#define FIG8_9_EX	FALSE
-#define FIG8_13_EX	FALSE
-#define FIG8_18_EX	FALSE
-#define FIG8_19_EX	FALSE
-#define FIG8_21_EX	FALSE
-#define FIG8_23_EX	FALSE
-#define FIG8_24_EX	TRUE
+#define FIG8_2_EX	FALSE	/* Pointer string mechanism */
+#define FIG8_4_EX	FALSE	/*atof usage */
+#define FIG8_9_EX	FALSE	/*strtod usage example*/
+#define FIG8_13_EX	FALSE	/* recursive string function*/
+#define FIG8_18_EX	FALSE	/*strcpy usage example*/
+#define FIG8_19_EX	FALSE	/* strcat & strncat usage example*/
+#define FIG8_21_EX	FALSE	/*strcmp & strncmp usage example*/
+#define FIG8_23_EX	FALSE	/*strchr usage example*/
+#define FIG8_24_EX	FALSE	/*strcspn usage example*/
+#define FIG8_25_EX  FALSE	/*strpbrk usage example*/
+#define FIG8_28_EX  TRUE	/*strstr usage example*/
 
-#if (FIG8_2_EX == TRUE )
-uint8_t a=0;
-#endif
-
-#if (FIG8_4_EX == TRUE )
-
-#endif
-
-#if (FIG8_9_EX == TRUE )
-
-#endif
 
 #if (FIG8_13_EX == TRUE )
 void ters(const char * const);
 
 #endif
 
-#if (FIG8_18_EX == TRUE )
-
-#endif
-
-#if (FIG8_19_EX == TRUE )
-
-#endif
-
-#if (FIG8_21_EX == TRUE )
-
-#endif
-
-#if (FIG8_23_EX == TRUE )
-
-#endif
-
-#if (FIG8_24_EX == TRUE )
-
-#endif
 
 int main(){
 
@@ -166,6 +138,11 @@ strchr NULL döndürür*/
 #endif
 
 #if (FIG8_24_EX == TRUE )
+
+	/* NOTE : strcspn fonksiyonu (Şekil 8.24), ilk argümanı olan stringin içinde ikinci argümanı olan
+	   stringin içindeki karakterlerden oluşmayan ilk kısmı bulur ve bu kısmın uzunluğunu
+	   döndürür.
+	*/
 	const char *string1 = "Değe1 3.141593";
 	const char *string2 = "1234567890";
 	int8_t result = 0;
@@ -174,24 +151,73 @@ strchr NULL döndürür*/
 	__NOP();
 #endif
 
+#if (FIG8_25_EX == TRUE )
+
+	/*
+	 * NOTE: strbrk fonksiyonu, ikinci argümanındaki stringte yer alan herhangi bir karakterin ilk
+	   argümanındaki stringte ilk konumunu arar. Eğer ikinci argümandaki karakter bulunursa,
+	   strbrk ilk argümandaki karakteri gösteren bir gösterici döndürür.Aksi takdirde, strbrk
+	   fonksiyonu NULL döndürür.
+
+	 */
+
+	const char *string1 = "Bu bir testtir";
+	const char *string2 = "dikkat";
+	char *temp_str = 0;
+
+	temp_str = strpbrk(string1,string2);
+#endif
+
+
+#if (FIG8_28_EX == TRUE )
+
+	/*
+	 * NOTE: strstr fonksiyonu, ikinci string argümanının, ilk string argümanında bulunduğu ilk konumu
+	   arar. Eğer ikinci string ilk string içinde bulunursa, ilk argüman içindeki stringi gösteren bir
+       gösterici döndürülür.
+
+	 */
+
+	const char *string1 = "abcdefgrhs";
+	const char *string2 = "gr";
+
+	char *temp_str = 0;
+
+	temp_str = strstr(string1,string2);
+
+	/*
+	 * NOTE: strtok fonksiyonu, bir stringi atomlarına ayırmak için kullanılır.
+	 * Atom, boşluk ya da noktalama karakterleri gibi sınırlayıcı bazı
+	 *  karakterlere kadar olan karakter serileridir.
+	 */
+
+    char dataStr[] = "123:abc:657:jhg:klm";
+	char  *atomPTr = 0, *tempPtr = 0;
+
+	do{
+		atomPTr = strtok(dataStr,":");
+		__NOP();
+	}while(atomPTr == NULL);
+
+//	atomPTr = strtok(dataStr,":");
+//
+//	while(atomPTr != NULL){
+//		tempPtr = atomPTr;
+//		atomPTr = strtok(NULL,":");
+//		__NOP();
+//	}
+
+
+
+#endif
+
 	while(1);
+
 
 	return 0;
 
 }
 
-
-#if (FIG8_2_EX == TRUE )
-
-#endif
-
-#if (FIG8_4_EX == TRUE )
-
-#endif
-
-#if (FIG8_9_EX == TRUE )
-
-#endif
 
 #if (FIG8_13_EX == TRUE )
 void ters(const char * const sPtr){
@@ -212,22 +238,7 @@ void ters(const char * const sPtr){
 }
 #endif
 
-#if (FIG8_18_EX == TRUE )
 
-#endif
-
-#if (FIG8_19_EX == TRUE )
-
-#endif
-
-#if (FIG8_21_EX == TRUE )
-
-#endif
-
-#if (FIG8_23_EX == TRUE )
-
-#endif
-
-#if (FIG8_24_EX == TRUE )
+#if (FIG8_25_EX == TRUE )
 
 #endif
