@@ -26,7 +26,9 @@
 #define FIG8_23_EX	FALSE	/*strchr usage example*/
 #define FIG8_24_EX	FALSE	/*strcspn usage example*/
 #define FIG8_25_EX  FALSE	/*strpbrk usage example*/
-#define FIG8_28_EX  TRUE	/*strstr usage example*/
+#define FIG8_28_EX  FALSE	/*strstr usage example*/
+#define FIG8_31_EX	FALSE	/*memcpy usage example */
+#define FIG8_32_EX	TRUE	/*memmove usage example */
 
 
 #if (FIG8_13_EX == TRUE )
@@ -191,25 +193,36 @@ strchr NULL döndürür*/
 	 *  karakterlere kadar olan karakter serileridir.
 	 */
 
-    char dataStr[] = "123:abc:657:jhg:klm";
-	char  *atomPTr = 0, *tempPtr = 0;
+    char dataStr[] = "123:abc:657:jhg:klm" , *atomPTr = 0;
 
-	do{
-		atomPTr = strtok(dataStr,":");
+	atomPTr = strtok(dataStr,":");
+
+	while(atomPTr != NULL){
+		atomPTr = strtok(NULL,":");
 		__NOP();
-	}while(atomPTr == NULL);
-
-//	atomPTr = strtok(dataStr,":");
-//
-//	while(atomPTr != NULL){
-//		tempPtr = atomPTr;
-//		atomPTr = strtok(NULL,":");
-//		__NOP();
-//	}
+	}
 
 
 
 #endif
+
+#if(FIG8_31_EX == TRUE)
+	/* NOTE: memcpy fonksiyonu, ikinci argümanıyla belirtilen nesneden aldığı belli sayıdaki karakteri ilk
+	   argümanıyla gösterilen nesneye kopyalar. Fonksiyon, her tipte nesne için gösterici alabilir.
+	   Fonksiyonun sonucu, eğer iki nesne hafızada çakışıyorsa (aynı nesnenin kısımlarıysa)
+	   belirsizdir.
+	 */
+	char s1[16] = {0},s2[] = "Stringi kopyala";
+	memcpy(s1,s2,16);
+	__NOP();
+#endif
+
+#if(FIG8_32_EX == TRUE)
+	char x[] = "Evim Tatli Ulan";
+	memmove(x,&x[5],10);
+	__NOP();
+#endif
+
 
 	while(1);
 
