@@ -40,10 +40,10 @@ int main(){
 #if(FIG12_3 == TRUE)
 	ListeDugumuPtr baslangicPtr = NULL;
 
-	ekle(&baslangicPtr,'1');
-	ekle(&baslangicPtr,'6');
-	ekle(&baslangicPtr,'3');
-	ekle(&baslangicPtr,'4');
+	ekle(&baslangicPtr,'A');
+	ekle(&baslangicPtr,'F');
+	ekle(&baslangicPtr,'E');
+	ekle(&baslangicPtr,'C');
 
 	sil(&baslangicPtr,'A');
 	sil(&baslangicPtr,'E');
