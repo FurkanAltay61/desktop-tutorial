@@ -8,136 +8,183 @@
 
 #include "iostream"
 #include "string.h"
+#include "Answers.h"
 
 using namespace std;
 
-
-#define FIG3_3 false
-#define FIG3_5 false
-#define FIG3_7 false
-#define FIG3_9 false
-#define FIG3_11 true
-
-
-#if (FIG3_3 == true)
-class GradeBook {
-    public:
-    void displayMsg(string courseName){
-        cout << "Welcome to the grade book for \n" << courseName << "!" << endl;
-    }
-};
+#if(FIG06_05)
+#include "time1.h"
+#elif(FIG06_10)
+#include "Salesp.h"
+#elif(FIG06_12)
+#include "time2.h"
+#elif(FIG06_15)
+#include "Create.h"
+void create(void);
+CreateAndDestroy first(1 , "(global before main )");
+#elif(FIG06_19)
+#include "time3.h"
+void incrementMinutes(Time & ,const int);
 #endif
 
-#if (FIG3_5 == true)
-class GradeBook {
 
-public:
-	void setCourseName( string name){
-    	courseName = name;
-    }
 
-    string getCoursename(){
-    	return courseName;
-    }
-
-	void displayMsg(){
-        cout << "Welcome to the grade book for \n" << getCoursename() << "!" << endl;
-    }
-
-private:
-	string courseName;
-
-};
-#endif
-
-#if (FIG3_7 == true)
-class GradeBook {
-
-public:
-
-	//constructor initializes coursename with string supplied as an argument
-	GradeBook(string name){
-		setCourseName(name); // call set function to initiliase courseName
-	}
-
-	void setCourseName( string name){
-    	courseName = name;
-    }
-
-    string getCoursename(){
-    	return courseName;
-    }
-
-	void displayMsg(){
-        cout << "Welcome to the grade book for \n" << getCoursename() << "!" << endl;
-    }
-
-private:
-	string courseName;
-
-};
-#endif
-
-#if (FIG3_9 == true)
-#include "GradeBook.h"
-#endif
-
-#if (FIG3_11 == true)
-#include "GradeBook2.h"
-#endif
 
 int main(){
 
-#if (FIG3_3 == true)
-    string nameofcourse;
-    GradeBook myGradeBook;
+#if(FIG06_05)
+	Time t;
 
-    cout << "Please enter the course name : ";
-    getline(cin,nameofcourse);
-    cout << endl;
+	cout << " The ini t ial universal t ime i s " ;
+	t . printUniversal ( ) ; // 0 0 : 0 0 : 0 0
+	cout << " \n The initial standard t ime i s " ;
+	t . printStandard ( ) ; // 1 2 : 0 0 : 0 0 AM
 
-    myGradeBook.displayMsg(nameofcourse);
-#endif
+	t.SetTime ( 13 , 27 , 6 ) ;
 
-#if (FIG3_5 == true)
-    string nameofcourse;
-    GradeBook myGradeBook;
+	cout << "\n\n Universal time after setTime is ";
+	t.printUniversal();		//13:27:6
+	cout << "\n\n Standard time after setTime is ";
+	t.printStandard();		//1:27:06 PM
 
-    cout << "Initial course name is :" << myGradeBook.getCoursename() << endl;
-    cout <<  "\nPlease enter the course name : " << endl;
-    getline(cin,nameofcourse);
-    myGradeBook.setCourseName(nameofcourse);
-    cout << endl;
-    myGradeBook.displayMsg();
-#endif
+	t.SetTime(99, 99, 99);
 
-#if (FIG3_7 == true)
-    GradeBook gradebook1("CS101 Introduction to C++ Programming");
-    GradeBook gradebook2("CS102 Data Strctures in C++");
+	cout << "\n\n After attempting invalid settings: "
+		 << "\nUniversal time: ";
+	t.printUniversal();
+	cout << "\nStandard time: ";
+	t.printStandard();
+	cout << endl;
 
-    cout << "gradebook1 created for course :" << gradebook1.getCoursename()
-    	 << "\ngradebook2 created for course :" << gradebook2.getCoursename()
-		 << endl;
-#endif
 
-#if (FIG3_9 == true)
-    GradeBook gradebook1("CS101 Introduction to C++ Programming");
-    GradeBook gradebook2("CS102 Data Strctures in C++");
+#elif(FIG06_10)
+	SalesPerson s; //create salesperson object s
 
-    cout << "gradebook1 created for course :" << gradebook1.getCoursename()
-    	 << "\ngradebook2 created for course :" << gradebook2.getCoursename()
-		 << endl;
-#endif
+	s.getSalesFromUser();
+	s.printAnnualSales();
 
-#if (FIG3_11 == true)
-    GradeBook2 gradebook1("CS101 Introduction to C++ Programming");
-    GradeBook2 gradebook2("CS102 Data Strctures in C++");
 
-    cout << "gradebook1 created for course :" << gradebook1.getCoursename()
-    	 << "\ngradebook2 created for course :" << gradebook2.getCoursename()
-		 << endl;
+#elif(FIG06_12)
+
+	Time t1;			//all arguments defaulted
+	Time t2(2);			//minute and second defaulted
+	Time t3(21,34);		//second(time) defaulted
+	Time t4(12,25,42);	//all values specified
+	Time t5(27,74,99);	//all values specified
+
+
+
+	t1. printUniversal ( ) ; // 0 0 : 0 0 : 0 0
+	cout << "\t";
+	t1. printStandard ( ) ; // 1 2 : 0 0 : 0 0 AM
+	cout << "\n";
+	t2. printUniversal ( ) ; // 0 0 : 0 0 : 0 0
+	cout << "\t";
+	t2. printStandard ( ) ; // 1 2 : 0 0 : 0 0 AM
+	cout << "\n";
+	t3. printUniversal ( ) ; // 0 0 : 0 0 : 0 0
+	cout << "\t";
+	t3. printStandard ( ) ; // 1 2 : 0 0 : 0 0 AM
+	cout << "\n";
+	t4. printUniversal ( ) ; // 0 0 : 0 0 : 0 0
+	cout << "\t";
+	t4. printStandard ( ) ; // 1 2 : 0 0 : 0 0 AM
+	cout << "\n";
+	t5. printUniversal ( ) ; // 0 0 : 0 0 : 0 0
+	cout << "\t";
+	t5. printStandard ( ) ; // 1 2 : 0 0 : 0 0 AM
+	cout << "\n";
+	cout << endl;
+
+#elif(FIG06_15)
+
+	cout << "\n MAIN FUNCTION : EXECUTION BEGINS " << endl;
+
+	CreateAndDestroy second(2, "(local automatic in main)" );
+
+	static CreateAndDestroy third ( 3, "(local static in main)" );
+
+	create();
+
+	cout << "\n MAIN FUNCTION : EXECUTION RESUMES " << endl;
+
+	CreateAndDestroy fourth ( 4, "(local automatic in main)" );
+
+	cout << "\n MAIN FUNCTION : EXECUTION ENDS " << endl;
+
+	return 0;
+
+#elif( FIG06_19 )
+
+	Time t;			//Create Time Object
+
+	//Set Time using individual set functions
+
+	t.setHour(17);
+	t.setMinute(34);
+	t.setSecond(55);
+
+	cout << "Result of setting all valid values:\n"
+		 << " Hour: " << t.getHour()
+		 << " Minute: " << t.getMinute()
+		 << " Second: " << t.getSecond()
+		 << "\n\n";
+
+	t.setHour(234); 		//Set invalid val
+	t.setMinute(43);
+	t.setSecond(6373);		//Set invalid second
+
+	cout << "Result of setting invalid value :\n"
+		 << " Hour: " << t.getHour()
+		 << " Minute: " << t.getMinute()
+		 << " Second: " << t.getSecond()
+		 << "\n\n";
+
+	t.SetTime(11,58,0);			//set time
+
+	incrementMinutes(t,55);		//increment t's minute by 3
+
+
 #endif
 
     system("pause");
     return 0;
 }
+
+
+#if(FIG06_15)
+
+void create(void){
+	cout << "\nCREATE FUNCTION : EXECUTE BEGINS " << endl;
+
+	CreateAndDestroy fifth(5, "(local automatic in create)" );
+
+	static CreateAndDestroy sixth(6, "(local static create)" );
+
+	CreateAndDestroy seventh(7, "(local automatic in create) " );
+}
+
+#elif(FIG06_19)
+
+void incrementMinutes(Time &tt ,const int count){
+
+	cout << " Incrementing minute " << count
+		 << "times: \n Start time: ";
+
+	tt.printStandard();
+
+	for(int i = 0; i < count ; i++) {
+		tt.setMinute((tt.getMinute() + 1) % 60);
+
+		if(tt.getMinute() == 0)
+			tt.setHour((tt.getHour() + 1) % 24);
+
+		cout << "\n minute + 1: ";
+		tt.printStandard();
+	}
+
+	cout << endl;
+}
+
+#endif
+

@@ -7,6 +7,7 @@
 
 
 
+#include "Answers.h"
 #include <iostream>
 
 using namespace std;
@@ -14,6 +15,10 @@ using namespace std;
 #include <iomanip>
 
 
+
+
+
+#if	(FIG06_01 == true)
 struct Time {
 	int hour;
 	int minute;
@@ -23,8 +28,25 @@ struct Time {
 void PrintUniversal(const Time &);
 void PrintStandard(const Time &);
 
+#endif
+
+
+#if	(FIG06_04 == true)
+class Count{
+
+public:
+	int x;
+
+	void print(){
+		cout << x << endl;
+	}
+};
+
+#endif
+
 int main(){
 
+#if	(FIG06_01 == true)
 	Time dinnertime;
 
 	dinnertime.hour = 18;
@@ -43,10 +65,33 @@ int main(){
 	cout << "\nTime with invalid values: ";
 	PrintUniversal(dinnertime);
 	cout << endl;
+#endif
+
+
+#if	(FIG06_04 == true)
+	Count counter;						//create counter object
+	Count *counterPtr = &counter;		//create pointer to counter
+	Count &counterRef = counter;		//create reference to counter
+
+	cout << "Assign 1 to x and print using the object's name : ";
+	counter.x = 1;						//assign 1 to data member x
+	counter.print();					//call member function print
+
+	cout << "Assign 2 to x and print using a reference : ";
+	counterRef.x = 2;					//assign 2 to data member x
+	counterRef.print();					//call member function print
+
+	cout << "Assign 3 to x and print using the pointer : ";
+	counterPtr->x = 3;					//assign 3 to data member x
+	counterPtr->print();				//call member function print
+
+#endif
 
 	return 0;
 }
 
+
+#if	(FIG06_01 == true)
 void PrintUniversal(const Time &t){
 
 	cout << setfill('0') << setw(2) << t.hour << ":" << setw(2) << t.minute << ":" << setw(2) << t.second;
@@ -59,3 +104,10 @@ void PrintStandard(const Time &t){
 			":" << setfill('0') << setw(2) << t.minute << ":" << setw(2) << t.second
 				<< (t.hour < 12 ? "AM" : "PM");
 }
+
+#endif
+
+#if	(FIG06_04 == true)
+
+
+#endif
