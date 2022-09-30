@@ -25,6 +25,8 @@ CreateAndDestroy first(1 , "(global before main )");
 #elif(FIG06_19)
 #include "time3.h"
 void incrementMinutes(Time & ,const int);
+#elif(QUE06_06)
+
 #endif
 
 
@@ -144,6 +146,7 @@ int main(){
 
 	incrementMinutes(t,55);		//increment t's minute by 3
 
+#elif( QUE06_06 )
 
 #endif
 

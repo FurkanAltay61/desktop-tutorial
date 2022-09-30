@@ -8,13 +8,12 @@
 #ifndef ANSWERS_H_
 #define ANSWERS_H_
 
-#define FIG06_01	false
-#define FIG06_04	false
 #define FIG06_05	false
 #define FIG06_10	false
 #define FIG06_12	false
 #define FIG06_15	false
-#define FIG06_19	true
+#define FIG06_19	false
+#define QUE06_06	true
 
 
 #endif /* ANSWERS_H_ */
