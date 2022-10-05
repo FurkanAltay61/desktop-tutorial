@@ -9,7 +9,7 @@
 
 
 
-#include "time1.h"
+#include <FIG06_05.h>
 
 #if (FIG06_05 == true)
 

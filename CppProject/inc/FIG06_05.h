@@ -5,8 +5,8 @@
  *      Author: furkan.altay
  */
 
-#ifndef TIME1_H_
-#define TIME1_H_
+#ifndef FIG06_05_H_
+#define FIG06_05_H_
 
 #include "Answers.h"
 
@@ -29,4 +29,4 @@ private:
 
 #endif
 
-#endif /* TIME1_H_ */
+#endif /* FIG06_05_H_ */

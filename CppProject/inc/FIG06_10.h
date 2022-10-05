@@ -5,8 +5,8 @@
  *      Author: furkan.altay
  */
 
-#ifndef SALESP_H_
-#define SALESP_H_
+#ifndef FIG06_10_H_
+#define FIG06_10_H_
 
 #include "Answers.h"
 
@@ -31,4 +31,4 @@ private:
 
 #endif
 
-#endif /* SALESP_H_ */
+#endif /* FIG06_10_H_ */
