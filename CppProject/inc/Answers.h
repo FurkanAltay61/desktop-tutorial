@@ -13,7 +13,8 @@
 #define FIG06_12	false
 #define FIG06_15	false
 #define FIG06_19	false
-#define QUE06_06	true
+#define QUE06_06	false
+#define QUE06_07	true
 
 
 #endif /* ANSWERS_H_ */
