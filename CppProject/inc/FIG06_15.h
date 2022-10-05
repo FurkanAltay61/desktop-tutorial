@@ -5,8 +5,8 @@
  *      Author: furkan.altay
  */
 
-#ifndef CREATE_H_
-#define CREATE_H_
+#ifndef FIG06_15_H_
+#define FIG06_15_H_
 
 #include "Answers.h"
 
@@ -24,4 +24,4 @@ private:
 #endif
 
 
-#endif /* CREATE_H_ */
+#endif /* FIG06_15_H_ */

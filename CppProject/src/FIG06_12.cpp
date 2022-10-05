@@ -9,52 +9,26 @@
 
 
 
-#include "time3.h"
+#include <FIG06_12.h>
 
-#if (FIG06_19)
+
+
+
+#if (FIG06_12 == true)
 
 #include <iostream>
 using namespace std;
 #include <iomanip>
 
 Time::Time(int hr,int min, int sec){
-	SetTime( hr , min , sec );
+	SetTime(hr,min,sec);
 }
 
 void Time::SetTime(int h, int m , int s){
 
-	setHour(h);
-	setMinute(m);
-	setSecond(s);
-}
-
-void Time::setHour(int h){
-
-	hour = (h >= 0 && h < 24) ? h : 0;
-}
-
-void Time::setMinute(int m){
-
-	minute = (m >= 0 && m < 60) ? m : 0;
-}
-
-void Time::setSecond(int s){
-
-	second = (s >= 0 && s < 60) ? s : 0;
-}
-
-
-int Time::getHour(){
-	return hour;
-}
-
-int Time::getMinute(){
-	return minute;
-}
-
-
-int Time::getSecond(){
-	return second;
+	hour   = (h > 0  && h < 24) ? h : 0;
+	minute = (m > 0  && m < 60) ? m : 0;
+	second = (s > 0  && s < 60) ? s : 0;
 }
 
 
@@ -70,5 +44,8 @@ void Time::printStandard(){
 
 
 #endif
+
+
+
 
 

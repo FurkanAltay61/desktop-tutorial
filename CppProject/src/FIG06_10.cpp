@@ -6,8 +6,8 @@
  */
 
 
+#include <FIG06_10.h>
 #include "Answers.h"
-#include "Salesp.h"
 
 #if(FIG06_10 == true)
 

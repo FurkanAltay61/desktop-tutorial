@@ -13,22 +13,24 @@
 using namespace std;
 
 #if(FIG06_05)
-#include "time1.h"
+#include <FIG06_05.h>
 #elif(FIG06_10)
-#include "Salesp.h"
+#include <FIG06_10.h>
 #elif(FIG06_12)
-#include "time2.h"
+#include <FIG06_12.h>
 #elif(FIG06_15)
-#include "Create.h"
+#include <FIG06_15.h>
 void create(void);
 CreateAndDestroy first(1 , "(global before main )");
 #elif(FIG06_19)
-#include "time3.h"
+#include <FIG06_19.h>
 void incrementMinutes(Time & ,const int);
 #elif(QUE06_06)
-#include "Complex.h"
+
 #elif(QUE06_07)
-#include "Rational.h"
+#include <QUE06_07.h>
+#elif(QUE06_08)
+#include "QUE06_08.h"
 #endif
 
 
@@ -149,32 +151,46 @@ int main(){
 	incrementMinutes(t,55);		//increment t's minute by 3
 
 #elif( QUE06_06 )
-	Complex b(1,7) , c(9,2);
-
-	b.print();
-	cout << " + " ;
-	c.print();
-	cout << " = " ;
-	b.Add(c);
-	cout << "addition of b + c is : ";
-	b.print();
-	cout << endl;
 
 #elif( QUE06_07 )
-	Rational r1(2,5) , r2(3,4);
-	r1.PrintRational();
-	cout << " + " ;
-	r2.PrintRational();
-	cout << " = ";
-	r1.AddRational(r2);
-	r1.PrintRational();
-	cout << endl;
-	r1.PrintRationalFloating();
 
-	r1.MultiplyRational(r2);
-	r1.PrintRational();
-	cout << endl;
-	r1.PrintRationalFloating();
+Rational r1(1,2) , r2(3,4) , Result;
+
+
+cout << "number1 is : " ;
+r1.printRational();
+
+cout << "number2 is : " ;
+r2.printRational();
+
+Result = r1.addRational(r2);
+
+cout << "number1 + number 2 is ";
+
+Result.printfloatRational();
+
+
+Result = r1.multiplyRational(r2);
+
+cout << "number1 * number 2 is ";
+
+Result.printfloatRational();
+
+
+Result = r1.divideRational(r2);
+
+cout << "number1 / number 2 is ";
+
+Result.printfloatRational();
+
+#elif( QUE06_08 )
+	Time d1(1,11,34,27);
+
+	d1.printTime();
+
+	//d1.incrementHour(20);
+	//d1.incrementMinute(100);
+	  d1.incrementSecond(100);
 #endif
 
     system("pause");

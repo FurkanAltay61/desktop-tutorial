@@ -5,8 +5,8 @@
  *      Author: furkan.altay
  */
 
-#ifndef COMPLEX_H_
-#define COMPLEX_H_
+#ifndef QUE06_06_H_
+#define QUE06_06_H_
 
 #include "Answers.h"
 
@@ -28,4 +28,4 @@ private:
 
 #endif
 
-#endif /* COMPLEX_H_ */
+#endif /* QUE06_06_H_ */

@@ -7,7 +7,7 @@
 
 
 
-#include "Complex.h"
+#include <QUE06_06.h>
 
 #if ( QUE06_06 )
 #include "iostream"
