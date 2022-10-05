@@ -26,9 +26,7 @@ public:
 	int getSecond();
 	int getDay();
 
-	void incrementHour(int);
-	void incrementMinute(int);
-	void incrementSecond(int);
+	void tickEvent();
 
 	void printTime();
 

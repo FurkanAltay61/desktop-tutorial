@@ -31,6 +31,8 @@ void incrementMinutes(Time & ,const int);
 #include <QUE06_07.h>
 #elif(QUE06_08)
 #include "QUE06_08.h"
+#elif(QUE06_09)
+#include "QUE06_09.h"
 #endif
 
 
@@ -186,11 +188,20 @@ Result.printfloatRational();
 #elif( QUE06_08 )
 	Time d1(1,11,34,27);
 
-	d1.printTime();
+	for(uint32_t i=0;i<100000;i++){
+		d1.printTime();
+		d1.tickEvent();
+	}
 
-	//d1.incrementHour(20);
-	//d1.incrementMinute(100);
-	  d1.incrementSecond(100);
+#elif( QUE06_09 )
+	Date d1(1,3,2012);
+
+	for(uint32_t i=0;i<1000;i++){
+		d1.printDate();
+		d1.nextDay();
+	}
+
+
 #endif
 
     system("pause");

@@ -36,17 +36,17 @@ void Time::setDay(int d){
 
 void Time::setHour(int h){
 	if(hour == h) return;
-	hour =   (h < 24) ? h : 0;
+	hour =   ( h >= 0 && h < 24) ? h : 0;
 }
 
 void Time::setMinute(int m){
 	if(minute == m) return;
-	minute = (m < 60) ? m : 0;
+	minute = (m>= 0 && m < 60) ? m : 0;
 }
 
 void Time::setSecond(int s){
 	if(second == s) return;
-	second = (s < 60) ? s : 0;
+	second = (s >= 0 && s < 60) ? s : 0;
 }
 
 int Time::getDay(){
@@ -65,45 +65,33 @@ int Time::getSecond	(){
 	return second;
 }
 
-void Time::incrementHour(int h){
+void Time::tickEvent(void){
 
-	for(uint8_t i=0; i< h; i++){
-		setHour(getHour() + 1);
+	setSecond(getSecond()+ 1);
 
-		if(getHour() == 23)
-			setDay(getDay() + 1);
-
-		printTime();
-	}
-}
-
-void Time::incrementMinute(int m){
-
-	for(uint8_t i=0; i< m; i++){
+	if(getSecond() == 0){
 		setMinute(getMinute() + 1);
 
-		if(getMinute() == 59)
+		if(getMinute() == 0){
 			setHour(getHour() + 1);
 
-		printTime();
+			if(getHour() == 0)
+				setDay(getDay()+ 1);
+
+		}
+
 	}
+
 }
 
-void Time::incrementSecond(int s){
-
-	for(uint8_t i=0; i< s; i++){
-		setSecond(getSecond() + 1);
-
-		if(getSecond() == 59)
-			setMinute(getMinute() + 1);
-
-		printTime();
-	}
-}
 
 void Time::printTime(void){
 
-	cout << "The date is " << day << ":" << hour << ":" << minute << ":" << second << endl;
+	cout << "The date is " 	<< ((day < 10) ? "0" : "")  << day << ":"
+							<< ((hour % 12 == 0) ? 12 : hour % 12) << ":"
+							<< (minute < 10 ? "0" : "") << minute << ":"
+							<< (second < 10 ? "0" : "") << second << " " <<
+							   (hour < 12 ? "AM" : "PM")<< endl;
 }
 
 
