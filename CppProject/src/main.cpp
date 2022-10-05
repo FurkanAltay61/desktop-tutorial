@@ -13,20 +13,22 @@
 using namespace std;
 
 #if(FIG06_05)
-#include "time1.h"
+#include <FIG06_05.h>
 #elif(FIG06_10)
-#include "Salesp.h"
+#include <FIG06_10.h>
 #elif(FIG06_12)
-#include "time2.h"
+#include <FIG06_12.h>
 #elif(FIG06_15)
-#include "Create.h"
+#include <FIG06_15.h>
 void create(void);
 CreateAndDestroy first(1 , "(global before main )");
 #elif(FIG06_19)
-#include "time3.h"
+#include <FIG06_19.h>
 void incrementMinutes(Time & ,const int);
 #elif(QUE06_06)
 
+#elif(QUE06_07)
+#include <QUE06_07.h>
 #endif
 
 
@@ -147,6 +149,37 @@ int main(){
 	incrementMinutes(t,55);		//increment t's minute by 3
 
 #elif( QUE06_06 )
+
+#elif( QUE06_07 )
+
+Rational r1(1,2) , r2(3,4) , Result;
+
+
+cout << "number1 is : " ;
+r1.printRational();
+
+cout << "number2 is : " ;
+r2.printRational();
+
+Result = r1.addRational(r2);
+
+cout << "number1 + number 2 is ";
+
+Result.printfloatRational();
+
+
+Result = r1.multiplyRational(r2);
+
+cout << "number1 * number 2 is ";
+
+Result.printfloatRational();
+
+
+Result = r1.divideRational(r2);
+
+cout << "number1 / number 2 is ";
+
+Result.printfloatRational();
 
 #endif
 
