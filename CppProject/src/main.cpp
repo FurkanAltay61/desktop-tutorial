@@ -26,7 +26,9 @@ CreateAndDestroy first(1 , "(global before main )");
 #include "time3.h"
 void incrementMinutes(Time & ,const int);
 #elif(QUE06_06)
-
+#include "Complex.h"
+#elif(QUE06_07)
+#include "Rational.h"
 #endif
 
 
@@ -147,7 +149,32 @@ int main(){
 	incrementMinutes(t,55);		//increment t's minute by 3
 
 #elif( QUE06_06 )
+	Complex b(1,7) , c(9,2);
 
+	b.print();
+	cout << " + " ;
+	c.print();
+	cout << " = " ;
+	b.Add(c);
+	cout << "addition of b + c is : ";
+	b.print();
+	cout << endl;
+
+#elif( QUE06_07 )
+	Rational r1(2,5) , r2(3,4);
+	r1.PrintRational();
+	cout << " + " ;
+	r2.PrintRational();
+	cout << " = ";
+	r1.AddRational(r2);
+	r1.PrintRational();
+	cout << endl;
+	r1.PrintRationalFloating();
+
+	r1.MultiplyRational(r2);
+	r1.PrintRational();
+	cout << endl;
+	r1.PrintRationalFloating();
 #endif
 
     system("pause");

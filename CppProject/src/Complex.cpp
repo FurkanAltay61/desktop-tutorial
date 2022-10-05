@@ -10,42 +10,30 @@
 #include "Complex.h"
 
 #if ( QUE06_06 )
+#include "iostream"
+using namespace std;
 
 Complex::Complex(double rval , double ival){
-	setReal(rval);
-	setImaginary(ival);
+	Set(rval,ival);
 }
 
-void Complex::setReal(double rval){
+void Complex::Add(const Complex &num){
+	realPart += num.realPart;
+	imaginaryPart += num.imaginaryPart;
+}
+
+void Complex::Subtract(const Complex &num){
+	realPart -= num.realPart;
+	imaginaryPart -= num.imaginaryPart;
+}
+
+void Complex::print(void){
+	cout << '(' << realPart << "," << imaginaryPart << ')' ;
+}
+
+void Complex::Set(double rval , double ival){
 	realPart = rval;
-}
-
-void Complex::setImaginary(double ival){
 	imaginaryPart = ival;
-}
-
-double Complex::getReal(void){
-	return realPart;
-}
-
-double Complex::getImaginary(void){
-	return imaginaryPart;
-}
-
-double Complex::SubtractReal(Complex &n1,Complex &n2){
-	return n1.getReal() - n2.getReal();
-}
-
-double Complex::SubtractImaginary(Complex &n1,Complex &n2){
-	return n1.getImaginary() - n2.getImaginary();
-}
-
-double Complex::AddReal(Complex &n1,Complex &n2){
-	return n1.
-}
-
-double Complex::AddImaginary(Complex &n1,Complex &n2){
-
 }
 
 #endif

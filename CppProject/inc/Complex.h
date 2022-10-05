@@ -16,15 +16,10 @@ class Complex {
 
 public:
 	Complex(double , double);
-	void setReal(double);
-	void setImaginary(double);
-	double getReal(void);
-	double getImaginary(void);
-	double SubtractReal(Complex & , Complex &);
-	double SubtractImaginary(Complex & , Complex &);
-	double AddReal(Complex & , Complex &);
-	double AddImaginary(Complex & , Complex &);
-	void printResult(void);
+	void Add(const Complex &);
+	void Subtract(const Complex &);
+	void print(void);
+	void Set(double,double);
 private:
 	double realPart;
 	double imaginaryPart;
