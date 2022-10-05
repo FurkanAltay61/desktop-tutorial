@@ -29,6 +29,8 @@ void incrementMinutes(Time & ,const int);
 
 #elif(QUE06_07)
 #include <QUE06_07.h>
+#elif(QUE06_08)
+#include "QUE06_08.h"
 #endif
 
 
@@ -181,6 +183,14 @@ cout << "number1 / number 2 is ";
 
 Result.printfloatRational();
 
+#elif( QUE06_08 )
+	Time d1(1,11,34,27);
+
+	d1.printTime();
+
+	//d1.incrementHour(20);
+	//d1.incrementMinute(100);
+	  d1.incrementSecond(100);
 #endif
 
     system("pause");
