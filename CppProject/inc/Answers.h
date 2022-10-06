@@ -16,7 +16,11 @@
 #define QUE06_06	false			//Complex number Example
 #define QUE06_07	false			//Rational number Example
 #define QUE06_08	false			//Time Class - Modified Example
-#define QUE06_09	true			//Time Class with ( + Day , + Error Checking )
+#define QUE06_09	false			//Time Class with ( + Day , + Error Checking )
+
+
+#define FIG07_06	true			//Alarm Clock Class Example
+#define FIG07_08
 
 
 #endif /* ANSWERS_H_ */
