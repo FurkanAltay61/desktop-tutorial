@@ -33,6 +33,9 @@ void incrementMinutes(Time & ,const int);
 #include "QUE06_08.h"
 #elif(QUE06_09)
 #include "QUE06_09.h"
+#elif(FIG07_06)
+#include "FIG07_06_Date.h"
+#include "FIG07_06_Employee.h"
 #endif
 
 
@@ -201,6 +204,17 @@ Result.printfloatRational();
 		d1.nextDay();
 	}
 
+#elif(FIG07_06)
+	Date birth(7, 24, 1949);
+	Date hire( 3, 12, 1988);
+	Employee manager("Bob", "Jones", birth, hire);
+	cout << '\n';
+
+	manager.print();
+
+	cout << "\nTest Date constructor with invalid values: \n";
+	Date lastDayOff(14, 35, 1994);	//invalid month and day
+	cout << endl;
 
 #endif
 
