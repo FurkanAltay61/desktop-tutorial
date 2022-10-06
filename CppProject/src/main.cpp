@@ -36,6 +36,8 @@ void incrementMinutes(Time & ,const int);
 #elif(FIG07_06)
 #include "FIG07_06_Date.h"
 #include "FIG07_06_Employee.h"
+#elif(FIG07_13)
+#include "FIG07_13_This.h"
 #endif
 
 
@@ -216,6 +218,9 @@ Result.printfloatRational();
 	Date lastDayOff(14, 35, 1994);	//invalid month and day
 	cout << endl;
 
+#elif(FIG07_13)
+Test testObject(12);
+testObject.print();
 #endif
 
     system("pause");

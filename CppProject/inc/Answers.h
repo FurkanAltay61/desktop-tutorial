@@ -19,8 +19,8 @@
 #define QUE06_09	false			//Time Class with ( + Day , + Error Checking )
 
 
-#define FIG07_06	true			//Alarm Clock Class Example
-#define FIG07_08
+#define FIG07_06	false			//Alarm Clock Class Example
+#define FIG07_13	true			//This pointer example
 
 
 #endif /* ANSWERS_H_ */
