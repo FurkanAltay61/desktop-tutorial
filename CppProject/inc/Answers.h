@@ -21,6 +21,7 @@
 
 #define FIG07_06	false			//Alarm Clock Class Example
 #define FIG07_13	false			//This pointer example
-#define FIG07_14	true			//This pointer cascaded call
-
+#define FIG07_14	false			//This pointer cascaded call
+#define FIG07_17	false			//static usage in class
+#define FIG07_20	true
 #endif /* ANSWERS_H_ */

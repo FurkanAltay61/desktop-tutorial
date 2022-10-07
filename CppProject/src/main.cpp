@@ -40,6 +40,10 @@ void incrementMinutes(Time & ,const int);
 #include "FIG07_13_This.h"
 #elif(FIG07_14)
 #include "FIG07_14.h"
+#elif(FIG07_17)
+#include "FIG07_17.h"
+#elif(FIG07_20)
+#include "FIG07_20_2.h"
 #endif
 
 
@@ -239,6 +243,37 @@ testObject.print();
 	t.setTime(20,20,20).printUniversal();
 
 	cout << endl;
+
+
+#elif(FIG07_17)
+	cout << "Number of employees before instantiation is :" << Employee::getCount() << endl;
+
+	Employee *e1Ptr = new Employee ( "Susan" , "Baker");
+	Employee *e2Ptr = new Employee ( "Robert" , "Jones");
+
+	cout << "Number of employees after instantiation is :" << e1Ptr->getCount();
+
+	cout << "\n\nEmployee 1: " << e1Ptr->getFirstName() << " " << e1Ptr->getLastName()
+		 << "\nEmployee 2: " << e2Ptr->getFirstName() << " " << e2Ptr->getLastName()
+		 <<"\n\n";
+
+
+	delete e1Ptr; // recapture memory
+	e1Ptr = 0;	  //disconnect pointer from free-store space
+	delete e2Ptr; // recapture memory
+	e2Ptr = 0;	  //disconnect pointer from free-store space
+
+	cout << "\n\nEmployee 1: " << e1Ptr->getFirstName() << " " << e1Ptr->getLastName()
+		 << "\nEmployee 2: " << e2Ptr->getFirstName() << " " << e2Ptr->getLastName()
+		 <<"\n\n";
+
+	cout << "Number of employees after deletion is " << Employee::getCount() << endl;
+#elif(FIG07_20)
+	Interface i(5);
+	cout << "Interface contains: " << i.getValue() << " before setValue" << endl;
+	i.setValue(10);
+	cout << "Interface contains: " << i.getValue() << " after setValue" << endl;
+
 #endif
 
     system("pause");
