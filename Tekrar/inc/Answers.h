@@ -14,7 +14,9 @@
 #define FIG06_10	false
 #define FIG06_12	false
 #define FIG06_17	false
-#define FIG06_18	true
+#define FIG06_18	false
+
+#define FIG07_06	true
 
 
 #endif /* ANSWERS_H_ */

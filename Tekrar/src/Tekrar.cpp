@@ -26,6 +26,9 @@ void funccreate(void);
 #elif(FIG06_18)
 #include "time3.h"
 void IncrementMinutes(Time &, int value);
+#elif (FIG07_06)
+#include "FIG07_06_Date.h"
+#include "FIG07_06_Employee.h"
 #endif
 
 
@@ -62,6 +65,9 @@ int main() {
 	time3.printStandard();
 	time3.printUniversal();
 	IncrementMinutes(time3,60);
+#elif (FIG07_06)
+Date d1(30,01,1967),d2(24,11,1972);
+Employee e1("Bob","Smart",d1,d2);
 #endif
 
 	//system("pause");
@@ -86,5 +92,7 @@ void IncrementMinutes(Time &tt, int value){
 
 
 }
+
+
 #endif
 
