@@ -20,7 +20,7 @@
 
 
 #define FIG07_06	false			//Alarm Clock Class Example
-#define FIG07_13	true			//This pointer example
-
+#define FIG07_13	false			//This pointer example
+#define FIG07_14	true			//This pointer cascaded call
 
 #endif /* ANSWERS_H_ */

@@ -38,6 +38,8 @@ void incrementMinutes(Time & ,const int);
 #include "FIG07_06_Employee.h"
 #elif(FIG07_13)
 #include "FIG07_13_This.h"
+#elif(FIG07_14)
+#include "FIG07_14.h"
 #endif
 
 
@@ -221,6 +223,22 @@ Result.printfloatRational();
 #elif(FIG07_13)
 Test testObject(12);
 testObject.print();
+
+#elif(FIG07_14)
+	Time t;
+
+	t.setHour(18).setMinute(30).setSecond(55);
+
+	cout << "Universal time : ";
+	t.printUniversal();
+
+	cout << "\nStandard time : ";
+	t.printStandard();
+
+	cout << "\n\nNew Standard Universal time : ";
+	t.setTime(20,20,20).printUniversal();
+
+	cout << endl;
 #endif
 
     system("pause");
