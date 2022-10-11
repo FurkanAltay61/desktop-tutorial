@@ -24,7 +24,11 @@ public:
 	void runSimulation(int);
 
 private:
-
+	Floor floor1;		//floor1 object
+	Floor floor2;		//floor2 object
+	Elevator elevator;  //elevator object
+	Clock clock;		//clock object
+	Scheduler scheduler;//scheduler object
 };
 
 #endif

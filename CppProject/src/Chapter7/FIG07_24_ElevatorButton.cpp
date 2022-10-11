@@ -10,6 +10,8 @@
 
 #if (FIG07_24)
 
+#include "FIG07_24_Elevator.h"
+
 #include <iostream>
 
 using namespace std;

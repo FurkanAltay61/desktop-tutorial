@@ -13,6 +13,10 @@
 
 #if (FIG07_24)
 
+#include "FIG07_24_Door.h"
+#include "FIG07_24_Bell.h"
+#include "FIG07_24_ElevatorButton.h"
+
 class Floor;
 class Person;
 
@@ -41,7 +45,7 @@ private:
 	static const int DOWN;
 
 	int currentBuildingClockTime; //current time
-	bool moving;					  //elevator state
+	bool moving;				  //elevator state
 	int direction;				  //current direction
 	int currentFloor;			  //current location
 	int arrivalTime;			  //time to arrive at floor
