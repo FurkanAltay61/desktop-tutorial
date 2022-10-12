@@ -44,6 +44,8 @@ void incrementMinutes(Time & ,const int);
 #include "FIG07_17.h"
 #elif(FIG07_20)
 #include "FIG07_20_2.h"
+#elif(FIG07_24)
+#include "FIG07_24_Building.h"
 #endif
 
 
@@ -273,6 +275,22 @@ testObject.print();
 	cout << "Interface contains: " << i.getValue() << " before setValue" << endl;
 	i.setValue(10);
 	cout << "Interface contains: " << i.getValue() << " after setValue" << endl;
+#elif(FIG07_24)
+	int duration;
+
+	cout << "Enter run time: ";
+	cin >> duration;
+	cin.ignore();
+
+	Building building;
+
+	cout << endl << "*** ELEVATOR SIMULATION BEGINS ***"
+		 << endl << endl;
+
+	building.runSimulation(duration);
+
+	cout << " *** ELEVATOR SIMULATION ENDS *** " << endl;
+
 
 #endif
 

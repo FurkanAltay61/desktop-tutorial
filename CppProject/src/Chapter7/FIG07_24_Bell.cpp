@@ -13,6 +13,9 @@
 
 #include <iostream>
 
+using namespace std;
+
+
 Bell::Bell(){
 	cout << "Bell constructed " << endl;
 }

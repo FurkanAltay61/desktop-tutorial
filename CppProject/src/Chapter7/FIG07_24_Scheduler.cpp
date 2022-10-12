@@ -51,6 +51,17 @@ void Scheduler::scheduleTime(const Floor &floor){
 		 << floorNumber << " at time " << arrivalTime << ')' << endl;
 }
 
+void Scheduler::delayTime(const Floor &floor){
+	int floorNumber = floor.getNumber();
+
+	int arrivalTime = (floorNumber == Floor::FLOOR1) ?
+			++floor1ArrivalTime : ++floor2ArrivalTime;
+
+	cout << "(scheduler delays next person for floor "
+		 << floorNumber << "until time" << arrivalTime << ')'
+		 << endl;
+}
+
 void Scheduler::processTime(int time)
 {
 	currentClockTime = time;

@@ -8,6 +8,11 @@
 
 #include <FIG07_24_Clock.h>
 
+#if (FIG07_24)
+
+#include <iostream>
+
+using namespace std;
 
 
 Clock::Clock():time(0){
@@ -19,10 +24,12 @@ Clock::~Clock(){
 	cout << "clock is destructed" << endl;
 }
 
-Clock::tick(){
+void Clock::tick(){
 	time++;
 }
 
 int Clock::getTime() const {
 	return time;
 }
+
+#endif

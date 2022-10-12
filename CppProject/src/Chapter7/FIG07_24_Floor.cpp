@@ -11,12 +11,16 @@
 
 #if (FIG07_24)
 
+#include <iostream>
+
+using namespace std;
+
 #include "FIG07_24_Person.h"
 #include "FIG07_24_Elevator.h"
 #include "FIG07_24_Door.h"
 
 const int Floor::FLOOR1 = 1;
-const int Floor::FLOOR1 = 2;
+const int Floor::FLOOR2 = 2;
 
 
 Floor::Floor(int number,Elevator &elevatorHandle) :
@@ -51,7 +55,8 @@ Person *Floor::elevatorArrived(){
 	cout << "Floor " << floorNumber <<
 			"resets its button" << endl;
 
-	Button.resetButton();
+	floorButton.resetButton();
+
 	light.turnOn();
 	return occupantPtr;
 }

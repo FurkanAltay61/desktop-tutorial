@@ -47,7 +47,7 @@ Elevator::~Elevator(){
 }
 
 
-Elevator::processTime(int time){
+void Elevator::processTime(int time){
 	currentBuildingClockTime = time;
 
 	if(moving)
@@ -112,6 +112,59 @@ void Elevator::arriveAtFloor(Floor &arrivalFloor){
 	Person *floorPersonPtr = arrivalFloor.elevatorArrived();
 
 	door.openDoor(passengerPtr, floorPersonPtr, arrivalFloor, *this);
+
+	bool currentFloorNeedsService = currentFloor == Floor::FLOOR1 ?
+									floor1NeedsService : floor2NeedsService;
+	bool otherFloorNeedsService = currentFloor == Floor::FLOOR1 ?
+									floor2NeedsService : floor1NeedsService;
+
+	if(!currentFloorNeedsService)
+		prepareToLeave(otherFloorNeedsService);
+	else
+		currentFloor = Floor::FLOOR1 ? floor1NeedsService = false : floor2NeedsService = false;
+}
+
+void Elevator::summonElevator(int floor){
+	floor = Floor::FLOOR1 ?
+			floor1NeedsService = true : floor2NeedsService = true;
+}
+
+void Elevator::passengerEnters(Person * const personPtr){
+	passengerPtr = personPtr;
+
+	cout << "person" << passengerPtr->getID()
+		 << "enters elevator from floor"
+		 << currentFloor << endl;
+}
+
+void Elevator::passengerExits(){
+	passengerPtr = 0;
+}
+
+void Elevator::prepareToLeave(bool Leaving){
+	Floor &thisFloor =
+			currentFloor == Floor::FLOOR1 ? floor1Ref : floor2Ref;
+
+	thisFloor.elevatorLeaving();
+
+
+	door.closeDoor(thisFloor);
+
+	if(Leaving)
+		move();
+}
+
+void Elevator::move(){
+	moving = true;
+
+	arrivalTime	= currentBuildingClockTime + ELEVATOR_TRAVEL_TIME;
+
+	cout << "elevator begins moving"
+	     << (direction == DOWN ? "down " : "up ")
+		 << "to floor "
+		 << (direction == DOWN ? '1' : '2')
+		 << "(arrives at time " << arrivalTime << ')'
+		 << endl;
 }
 
 #endif

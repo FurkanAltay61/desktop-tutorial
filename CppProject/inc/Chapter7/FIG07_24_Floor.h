@@ -12,7 +12,7 @@
 
 #if ( FIG07_24 )
 
-#include "FIG07_24_Button.h"
+#include "FIG07_24_FloorButton.h"
 #include "FIG07_24_Light.h"
 
 class Elevator;
@@ -37,7 +37,7 @@ public:
     static const int FLOOR1;
     static const int FLOOR2;
 
-    Button button;
+    FloorButton floorButton;
 
 private:
     const int floorNumber;

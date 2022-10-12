@@ -17,7 +17,7 @@
 using namespace std;
 
 FloorButton::FloorButton(int floor, Elevator &elevatorHandle) :
-		elevatorRef(floor),
+		floorNumber(floor),
 		pressed(false),
 		elevatorRef(elevatorHandle)
 {

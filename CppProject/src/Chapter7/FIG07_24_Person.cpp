@@ -41,6 +41,24 @@ void Person::stepOntoFloor(Floor &floor){
 		 << floor.getNumber() << endl;
 
 	floor.floorButton.pressButton();
+
+}
+
+void Person::enterElevator(Elevator &elevator,Floor &floor){
+	floor.personBoardingElevator();
+
+	elevator.passengerEnters(this);
+
+	cout << "person"  << ID
+		 << "presses elevator button" << endl;
+
+	elevator.elevatorButton.pressButton();
+
+}
+
+void Person::exitElevator(const Floor &floor,Elevator &elevator) const {
+	cout << "person" << ID << "exits elevator on floor" << floor.getNumber() << endl;
+	elevator.passengerExits();
 }
 
 
