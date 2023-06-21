@@ -1,4 +1,0 @@
-../User/Src/UartDriver.c:38:6:UartDriver_ctor	16	static
-../User/Src/UartDriver.c:44:8:UartDriver_initial	16	static
-../User/Src/UartDriver.c:52:8:UartDriver_UartMngr	1048	static,ignoring_inline_asm
-../User/Src/UartDriver.c:106:6:HAL_UART_RxCpltCallback	24	static,ignoring_inline_asm

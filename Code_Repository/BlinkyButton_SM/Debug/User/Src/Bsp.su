@@ -1,3 +1,0 @@
-../User/Src/Bsp.c:12:7:BspGetButtonState	8	static
-../User/Src/Bsp.c:16:6:BspLedOn	8	static
-../User/Src/Bsp.c:19:6:BspLedOff	8	static

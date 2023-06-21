@@ -1,3 +1,0 @@
-../User/Src/BlinkyButton.c:12:6:BlinkyButton_ctor	16	static
-../User/Src/BlinkyButton.c:20:13:BlinkyButton_dispatch	16	static
-../User/Src/BlinkyButton.c:59:6:App_TimeTickHook	24	static

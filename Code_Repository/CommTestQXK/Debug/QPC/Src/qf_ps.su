@@ -1,5 +1,0 @@
-../QPC/Src/qf_ps.c:88:6:QF_psInit	16	static
-../QPC/Src/qf_ps.c:120:6:QF_publish_	24	static
-../QPC/Src/qf_ps.c:208:6:QActive_subscribe	24	static
-../QPC/Src/qf_ps.c:256:6:QActive_unsubscribe	24	static
-../QPC/Src/qf_ps.c:305:6:QActive_unsubscribeAll	24	static

@@ -1,8 +1,0 @@
-../QPC/Src/qep_msm.c:136:6:QMsm_ctor	16	static
-../QPC/Src/qep_msm.c:167:6:QMsm_init_	24	static
-../QPC/Src/qep_msm.c:232:6:QMsm_dispatch_	40	static
-../QPC/Src/qep_msm.c:447:15:QMsm_execTatbl_	24	static
-../QPC/Src/qep_msm.c:529:13:QMsm_exitToTranSource_	32	static
-../QPC/Src/qep_msm.c:577:15:QMsm_enterHistory_	48	static
-../QPC/Src/qep_msm.c:643:6:QMsm_isInState	24	static
-../QPC/Src/qep_msm.c:674:16:QMsm_childStateObj_	32	static
