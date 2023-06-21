@@ -1,0 +1,7 @@
+../User/Src/Bsp.c:12:7:BspGetButtonState	24	static
+../User/Src/Bsp.c:31:6:BspLed1On	8	static
+../User/Src/Bsp.c:34:6:BspLed1Off	8	static
+../User/Src/Bsp.c:38:6:BspLed2On	8	static
+../User/Src/Bsp.c:41:6:BspLed2Off	8	static
+../User/Src/Bsp.c:45:6:BspLed3On	8	static
+../User/Src/Bsp.c:48:6:BspLed3Off	8	static
