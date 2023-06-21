@@ -1,4 +1,0 @@
-../QPC/Src/qf_mem.c:82:6:QMPool_init	32	static
-../QPC/Src/qf_mem.c:154:6:QMPool_put	24	static,ignoring_inline_asm
-../QPC/Src/qf_mem.c:212:7:QMPool_get	32	static,ignoring_inline_asm
-../QPC/Src/qf_mem.c:293:15:QF_getPoolMin	24	static,ignoring_inline_asm

@@ -1,8 +1,0 @@
-../User/Src/TimeBomb.c:22:6:TimeBomb_ctor	16	static
-../User/Src/TimeBomb.c:29:8:TimeBomb_initial	16	static
-../User/Src/TimeBomb.c:34:8:TimeBomb_armed	24	static
-../User/Src/TimeBomb.c:61:8:TimeBomb_wait4button	24	static
-../User/Src/TimeBomb.c:91:8:TimeBomb_blink	24	static
-../User/Src/TimeBomb.c:123:8:TimeBomb_pause	24	static
-../User/Src/TimeBomb.c:155:8:TimeBomb_boom	24	static
-../User/Src/TimeBomb.c:179:8:TimeBomb_defused	24	static

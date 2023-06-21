@@ -1,2 +1,0 @@
-../Core/Src/bsp.c:11:6:BSP_display	16	static
-../Core/Src/bsp.c:15:6:BSP_exit	4	static

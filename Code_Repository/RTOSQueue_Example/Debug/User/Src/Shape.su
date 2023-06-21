@@ -1,7 +1,0 @@
-C:/Users/furkan.altay/STM32CubeIDE/workspace_1.7.1/RTOSQueue_Example/User/Inc/Shape.h:39:20:shape_draw_vcall	16	static
-../User/Src/Shape.c:16:6:Shape_ctor	16	static
-../User/Src/Shape.c:28:6:Shape_moveBy	16	static
-../User/Src/Shape.c:33:10:Shape_distanceFrom	24	static
-../User/Src/Shape.c:51:13:Shape_draw	16	static
-../User/Src/Shape.c:55:17:Shape_area	16	static
-../User/Src/Shape.c:62:6:drawGraph	24	static

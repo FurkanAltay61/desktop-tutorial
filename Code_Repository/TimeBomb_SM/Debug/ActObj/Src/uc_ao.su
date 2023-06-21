@@ -1,8 +1,0 @@
-../ActObj/Src/uc_ao.c:25:6:Active_ctor	16	static
-../ActObj/Src/uc_ao.c:31:13:Active_eventLoop	24	static
-../ActObj/Src/uc_ao.c:52:6:Active_start	40	static
-../ActObj/Src/uc_ao.c:74:6:Active_post	24	static,ignoring_inline_asm
-../ActObj/Src/uc_ao.c:87:6:TimeEvent_ctor	24	static
-../ActObj/Src/uc_ao.c:109:6:TimeEvent_arm	24	static
-../ActObj/Src/uc_ao.c:117:6:TimeEvent_disarm	16	static
-../ActObj/Src/uc_ao.c:124:6:TimeEvent_tick	16	static
