@@ -23,10 +23,13 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
+#include "qpc.h"
+#include "bsp.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+Q_DEFINE_THIS_FILE
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -93,7 +96,7 @@ int _write(int file, char *ptr, int len)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	static QEvt const *blinky_queueSto[10]; /* event queue buffer for Blinky */
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -115,7 +118,19 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  QF_init();  /* initialize the framework */
+  BSP_init(); /* initialize the BSP */
 
+  /* instantiate and start the Blinky active object */
+  Blinky_ctor(); /* in C you must explicitly call the Blinky constructor */
+  QACTIVE_START(AO_Blinky, /* active object to start */
+      1U,                  /* priority of the active object */
+      blinky_queueSto,     /* event queue buffer */
+      Q_DIM(blinky_queueSto), /* the length of the buffer */
+      (void *)0, 0U,       /* private stack (not used) */
+      (QEvt *)0);          /* initialization event (not used) */
+
+  return QF_run(); /* let the framework run the application */
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -262,6 +277,7 @@ void HAL_SYSTICK_Callback(void)
             the HAL_SYSTICK_Callback could be implemented in the user file
    */
 
+	QF_TICK_X(0U, (void *)0); /* QF clock tick processing for rate 0 */
 
 	for(uint8_t i=0;i<3;i++){
 		HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_SET);
