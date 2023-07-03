@@ -22,7 +22,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stdio.h"
 #include "qpc.h"
 #include "bsp.h"
 /* USER CODE END Includes */
@@ -86,7 +85,6 @@ int _write(int file, char *ptr, int len)
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 /* USER CODE END 0 */
 
 /**
@@ -96,7 +94,7 @@ int _write(int file, char *ptr, int len)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	static QEvt const *blinky_queueSto[10]; /* event queue buffer for Blinky */
+	static QEvt const *keypad_queueSto[10]; /* event queue buffer for Blinky */
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -122,11 +120,11 @@ int main(void)
   BSP_init(); /* initialize the BSP */
 
   /* instantiate and start the Blinky active object */
-  Blinky_ctor(); /* in C you must explicitly call the Blinky constructor */
-  QACTIVE_START(AO_Blinky, /* active object to start */
+  Keypad_ctor(); /* in C you must explicitly call the Blinky constructor */
+  QACTIVE_START(AO_Keypad, /* active object to start */
       1U,                  /* priority of the active object */
-      blinky_queueSto,     /* event queue buffer */
-      Q_DIM(blinky_queueSto), /* the length of the buffer */
+      keypad_queueSto,     /* event queue buffer */
+      Q_DIM(keypad_queueSto), /* the length of the buffer */
       (void *)0, 0U,       /* private stack (not used) */
       (QEvt *)0);          /* initialization event (not used) */
 
@@ -255,21 +253,21 @@ static void MX_GPIO_Init(void)
 
 // Keypad matrix definition
 
-char pressedKey = 0;
-
-char keypad[4][3] = {
-    {'1', '2', '3'},
-    {'4', '5', '6'},
-    {'7', '8', '9'},
-    {'*', '0', '#'}
-};
-
-uint8_t  LastButtonStateArr[4][3]={0};
-uint32_t prevTick[4][3]= {0};
-uint16_t RowArr[4] = {GPIO_PIN_9,GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
-uint16_t ColArr[3] = {GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
-char Str[30]={0};
-uint8_t chr=0,start=0;
+//char pressedKey = 0;
+//
+//char keypad[4][3] = {
+//    {'1', '2', '3'},
+//    {'4', '5', '6'},
+//    {'7', '8', '9'},
+//    {'*', '0', '#'}
+//};
+//
+//uint8_t  LastButtonStateArr[4][3]={0};
+//uint32_t prevTick[4][3]= {0};
+//uint16_t RowArr[4] = {GPIO_PIN_9,GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
+//uint16_t ColArr[3] = {GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
+//char Str[30]={0};
+//uint8_t chr=0,start=0;
 
 void HAL_SYSTICK_Callback(void)
 {
@@ -279,38 +277,39 @@ void HAL_SYSTICK_Callback(void)
 
 	QF_TICK_X(0U, (void *)0); /* QF clock tick processing for rate 0 */
 
-	for(uint8_t i=0;i<3;i++){
-		HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_SET);
-		for(uint8_t j=0;j<4;j++){
-			if(HAL_GPIO_ReadPin(GPIOE,RowArr[j]) == GPIO_PIN_SET){
-				if((HAL_GetTick() - prevTick[j][i]) > 100 && (LastButtonStateArr[j][i] == 0)){
-					printf("Pressed key : %c\n",keypad[j][i]);
+//	for(uint8_t i=0;i<3;i++){
+//		HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_SET);
+//		for(uint8_t j=0;j<4;j++){
+//			if(HAL_GPIO_ReadPin(GPIOE,RowArr[j]) == GPIO_PIN_SET){
+//				if((HAL_GetTick() - prevTick[j][i]) > 100 && (LastButtonStateArr[j][i] == 0)){
+//					printf("Pressed key : %c\n",keypad[j][i]);
+//
+//					if(keypad[j][i] == '*'){
+//						start = 1;
+//						chr = 0;
+//					}else if(keypad[j][i] != '*' && keypad[j][i] != '#'){
+//						if(start == 1){
+//							Str[chr == 30 ? chr = 0 : chr++] = keypad[j][i];
+//						}
+//					}else if(keypad[j][i] == '#'){
+//						if(start == 1 && chr != 0){
+//							printf("String is : %s\n",Str);
+//						}
+//						start = 0;
+//						chr  = 0;
+//					}
+//
+//					LastButtonStateArr[j][i] = 1;
+//				}
+//			}else{
+//				prevTick[j][i] = HAL_GetTick();
+//				LastButtonStateArr[j][i] = 0;
+//			}
+//		}
+//
+//		HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_RESET);
+//	}
 
-					if(keypad[j][i] == '*'){
-						start = 1;
-						chr = 0;
-					}else if(keypad[j][i] != '*' && keypad[j][i] != '#'){
-						if(start == 1){
-							Str[chr == 30 ? chr = 0 : chr++] = keypad[j][i];
-						}
-					}else if(keypad[j][i] == '#'){
-						if(start == 1 && chr != 0){
-							printf("String is : %s\n",Str);
-						}
-						start = 0;
-						chr  = 0;
-					}
-
-					LastButtonStateArr[j][i] = 1;
-				}
-			}else{
-				prevTick[j][i] = HAL_GetTick();
-				LastButtonStateArr[j][i] = 0;
-			}
-		}
-
-		HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_RESET);
-	}
 
 
 }

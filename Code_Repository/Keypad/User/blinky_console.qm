@@ -29,84 +29,95 @@ https://www.state-machine.com/qpc/exa.html</documentation>
  <framework name="qpc"/>
  <!--${AOs}-->
  <package name="AOs" stereotype="0x02">
-  <!--${AOs::Blinky}-->
-  <class name="Blinky" superclass="qpc::QActive">
-   <!--${AOs::Blinky::timeEvt}-->
+  <!--${AOs::Keypad}-->
+  <class name="Keypad" superclass="qpc::QActive">
+   <!--${AOs::Keypad::timeEvt}-->
    <attribute name="timeEvt" type="QTimeEvt" visibility="0x02" properties="0x00"/>
-   <!--${AOs::Blinky::SM}-->
+   <!--${AOs::Keypad::SM}-->
    <statechart properties="0x01">
-    <!--${AOs::Blinky::SM::initial}-->
+    <!--${AOs::Keypad::SM::initial}-->
     <initial target="../1">
-     <action>(void)par; /* unused parameter */
-/* arm the private time event to expire in 1/2s
-* and periodically every 1/2 second
-*/
-QTimeEvt_armX(&amp;me-&gt;timeEvt,
-    BSP_TICKS_PER_SEC/2,
-    BSP_TICKS_PER_SEC/2);</action>
-     <initial_glyph conn="2,3,5,1,20,4,-4">
+     <action>QTimeEvt_armX(&amp;me-&gt;timeEvt,BSP_TICKS_PER_SEC/2,1U);</action>
+     <initial_glyph conn="46,14,5,1,17,7,-3">
       <action box="0,-2,6,2"/>
      </initial_glyph>
     </initial>
-    <!--${AOs::Blinky::SM::off}-->
-    <state name="off">
-     <entry>BSP_ledOff();</entry>
-     <!--${AOs::Blinky::SM::off::TIMEOUT}-->
-     <tran trig="TIMEOUT" target="../../2">
-      <tran_glyph conn="2,14,3,1,18,6,-2">
-       <action box="0,-2,8,2"/>
+    <!--${AOs::Keypad::SM::Button}-->
+    <state name="Button">
+     <!--${AOs::Keypad::SM::Button::BUTTON_READ}-->
+     <tran trig="BUTTON_READ">
+      <action>
+for(uint8_t i=0;i&lt;3;i++){
+    HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_SET);
+    for(uint8_t j=0;j&lt;4;j++){
+        if(HAL_GPIO_ReadPin(GPIOE,RowArr[j]) == GPIO_PIN_SET){
+            if((HAL_GetTick() - prevTick[j][i]) &gt; 100 &amp;&amp; (LastButtonStateArr[j][i] == 0)){
+                printf(&quot;Pressed key : %c\n&quot;,keypad[j][i]);
+
+                if(keypad[j][i] == '*'){
+                    start = 1;
+                    chr = 0;
+                }else if(keypad[j][i] != '*' &amp;&amp; keypad[j][i] != '#'){
+                    if(start == 1){
+                        Str[chr == 30 ? chr = 0 : chr++] = keypad[j][i];
+                    }
+                }else if(keypad[j][i] == '#'){
+                    if(start == 1 &amp;&amp; chr != 0){
+                        printf(&quot;String is : %s\n&quot;,Str);
+                    }
+                    start = 0;
+                    chr  = 0;
+                }
+
+                LastButtonStateArr[j][i] = 1;
+            }
+        }else{
+            prevTick[j][i] = HAL_GetTick();
+            LastButtonStateArr[j][i] = 0;
+        }
+    }
+
+    HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_RESET);
+}
+</action>
+      <tran_glyph conn="39,27,3,-1,12">
+       <action box="0,-2,13,2"/>
       </tran_glyph>
      </tran>
-     <state_glyph node="2,5,16,11">
-      <entry box="1,2,12,4"/>
-     </state_glyph>
-    </state>
-    <!--${AOs::Blinky::SM::on}-->
-    <state name="on">
-     <entry>BSP_ledOn();</entry>
-     <!--${AOs::Blinky::SM::on::TIMEOUT}-->
-     <tran trig="TIMEOUT" target="../../1">
-      <tran_glyph conn="2,28,3,1,20,-18,-4">
-       <action box="0,-2,8,2"/>
+     <!--${AOs::Keypad::SM::Button::BUTTON_PRESSED}-->
+     <tran trig="BUTTON_PRESSED">
+      <tran_glyph conn="39,34,3,-1,11">
+       <action box="0,-2,16,2"/>
       </tran_glyph>
      </tran>
-     <state_glyph node="2,18,16,12">
-      <entry box="1,2,12,4"/>
-     </state_glyph>
+     <!--${AOs::Keypad::SM::Button::Q_INIT}-->
+     <tran trig="Q_INIT">
+      <tran_glyph conn="39,23,3,-1,12">
+       <action box="0,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <state_glyph node="39,18,21,21"/>
     </state>
-    <state_diagram size="26,32"/>
+    <state_diagram size="105,80"/>
    </statechart>
   </class>
-  <!--${AOs::Blinky_ctor}-->
-  <operation name="Blinky_ctor" type="void" visibility="0x00" properties="0x01">
+  <!--${AOs::Keypad_ctor}-->
+  <operation name="Keypad_ctor" type="void" visibility="0x00" properties="0x01">
    <documentation>The Blinky &quot;constructor&quot; is provided outside of the Blinky class, so that it can be used independently from the class. This is part of the &quot;opaque pointer&quot; design idiom.</documentation>
-   <code>Blinky *me = (Blinky *)AO_Blinky;
-QActive_ctor(&amp;me-&gt;super, Q_STATE_CAST(&amp;Blinky_initial));
-QTimeEvt_ctorX(&amp;me-&gt;timeEvt, &amp;me-&gt;super, TIMEOUT_SIG, 0U);</code>
+   <code>Keypad *me = (Keypad *)AO_Keypad;
+QActive_ctor(&amp;me-&gt;super, Q_STATE_CAST(&amp;Keypad_initial));
+QTimeEvt_ctorX(&amp;me-&gt;timeEvt, &amp;me-&gt;super, BUTTON_READ_SIG, 0U);</code>
   </operation>
  </package>
  <!--${.}-->
  <directory name=".">
-  <!--${.::blinky.c}-->
-  <file name="blinky.c">
-   <text>#include &quot;qpc.h&quot;    /* QP/C framework API */
-#include &quot;bsp.h&quot;    /* Board Support Package interface */
-
-/* ask QM to declare the Blinky class --------------------------------------*/
-$declare${AOs::Blinky}
-
-/* instantiate the Blinky active object ------------------------------------*/
-static Blinky l_blinky;
-QActive * const AO_Blinky = &amp;l_blinky.super;
-
-/* ask QM to define the Blinky class ---------------------------------------*/
-$define${AOs::Blinky_ctor}
-$define${AOs::Blinky}</text>
-  </file>
   <!--${.::bsp.h}-->
   <file name="bsp.h">
    <text>#ifndef BSP_H
 #define BSP_H
+
+#include &lt;stdio.h&gt;  /* for printf()/fprintf() */
+#include &lt;stdlib.h&gt; /* for exit() */
 
 /* a very simple Board Support Package (BSP) -------------------------------*/
 enum { BSP_TICKS_PER_SEC = 100 }; /* number of clock ticks in a second */
@@ -116,13 +127,16 @@ void BSP_ledOn(void);
 
 /* define the event signals used in the application ------------------------*/
 enum BlinkySignals {
-    TIMEOUT_SIG = Q_USER_SIG, /* offset the first signal by Q_USER_SIG */
+    BUTTON_READ_SIG = Q_USER_SIG, /* offset the first signal by Q_USER_SIG */
+    BUTTON_PRESSED_SIG,
     MAX_SIG /* keep last (the number of signals) */
 };
 
 /* active object(s) used in this application -------------------------------*/
-extern QActive * const AO_Blinky; /* opaque pointer to the Blinky AO */
-$declare${AOs::Blinky_ctor}
+extern QActive * const AO_Keypad; /* opaque pointer to the Keypad AO */
+
+$declare${AOs::Keypad_ctor}
+
 
 #endif /* BSP_H */</text>
   </file>
@@ -131,11 +145,9 @@ $declare${AOs::Blinky_ctor}
    <text>/* Board Support Package implementation for desktop OS (Windows, Linux, MacOS) */
 #include &quot;qpc.h&quot;    /* QP/C framework API */
 #include &quot;bsp.h&quot;    /* Board Support Package interface */
-#include &lt;stdio.h&gt;  /* for printf()/fprintf() */
-#include &lt;stdlib.h&gt; /* for exit() */
 
 void BSP_init(void)   {
-    printf(&quot;Simple Blinky example\n&quot;
+    printf(&quot;Simple Keypad example\n&quot;
            &quot;QP/C version: %s\n&quot;
            &quot;Press Ctrl-C to quit...\n&quot;,
            QP_VERSION_STR);
@@ -427,6 +439,41 @@ show :
     @echo DEFINES      = $(DEFINES)
 
 </text>
+  </file>
+  <!--${.::keypad.c}-->
+  <file name="keypad.c">
+   <text>#include &quot;qpc.h&quot;
+#include &quot;bsp.h&quot;
+#include &quot;keypad.h&quot;
+
+
+static char keypad[4][3] = {
+    {'1', '2', '3'},
+    {'4', '5', '6'},
+    {'7', '8', '9'},
+    {'*', '0', '#'}
+};
+
+static uint8_t  LastButtonStateArr[4][3]={0};
+static uint32_t prevTick[4][3]= {0};
+static uint16_t RowArr[4] = {GPIO_PIN_9,GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
+static uint16_t ColArr[3] = {GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
+static char Str[30]={0};
+static uint8_t chr=0,start=0;
+
+
+$declare${AOs::Keypad}
+
+/* instantiate the Blinky active object ------------------------------------*/
+static Keypad l_keypad;
+QActive * const AO_Keypad = &amp;l_keypad.super;
+
+$define${AOs::Keypad_ctor}
+$define${AOs::Keypad}</text>
+  </file>
+  <!--${.::keypad.h}-->
+  <file name="keypad.h">
+   <text>#include &quot;main.h&quot;</text>
   </file>
  </directory>
 </model>

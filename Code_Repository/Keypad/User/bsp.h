@@ -31,6 +31,9 @@
 #ifndef BSP_H
 #define BSP_H
 
+#include <stdio.h>  /* for printf()/fprintf() */
+#include <stdlib.h> /* for exit() */
+
 /* a very simple Board Support Package (BSP) -------------------------------*/
 enum { BSP_TICKS_PER_SEC = 100 }; /* number of clock ticks in a second */
 void BSP_init(void);
@@ -39,16 +42,19 @@ void BSP_ledOn(void);
 
 /* define the event signals used in the application ------------------------*/
 enum BlinkySignals {
-    TIMEOUT_SIG = Q_USER_SIG, /* offset the first signal by Q_USER_SIG */
+    BUTTON_READ_SIG = Q_USER_SIG, /* offset the first signal by Q_USER_SIG */
+    BUTTON_PRESSED_SIG,
     MAX_SIG /* keep last (the number of signals) */
 };
 
 /* active object(s) used in this application -------------------------------*/
-extern QActive * const AO_Blinky; /* opaque pointer to the Blinky AO */
-/*$declare${AOs::Blinky_ctor} vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
+extern QActive * const AO_Keypad; /* opaque pointer to the Keypad AO */
 
-/*${AOs::Blinky_ctor} ......................................................*/
-void Blinky_ctor(void);
-/*$enddecl${AOs::Blinky_ctor} ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+/*$declare${AOs::Keypad_ctor} vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
+
+/*${AOs::Keypad_ctor} ......................................................*/
+void Keypad_ctor(void);
+/*$enddecl${AOs::Keypad_ctor} ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
 
 #endif /* BSP_H */
