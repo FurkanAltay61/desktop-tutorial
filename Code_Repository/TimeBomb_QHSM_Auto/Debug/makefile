@@ -62,8 +62,8 @@ all: main-build
 main-build: TimeBomb_QHSM_Auto.elf secondary-outputs
 
 # Tool invocations
-TimeBomb_QHSM_Auto.elf TimeBomb_QHSM_Auto.map: $(OBJS) $(USER_OBJS) C:\Users\furkan.altay\STM32CubeIDE\workspace_1.7.1\TimeBomb_QHSM_Auto\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "TimeBomb_QHSM_Auto.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\furkan.altay\STM32CubeIDE\workspace_1.7.1\TimeBomb_QHSM_Auto\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimeBomb_QHSM_Auto.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+TimeBomb_QHSM_Auto.elf TimeBomb_QHSM_Auto.map: $(OBJS) $(USER_OBJS) /home/furkan/Desktop/desktop-tutorial/Code_Repository/TimeBomb_QHSM_Auto/STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "TimeBomb_QHSM_Auto.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/home/furkan/Desktop/desktop-tutorial/Code_Repository/TimeBomb_QHSM_Auto/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TimeBomb_QHSM_Auto.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

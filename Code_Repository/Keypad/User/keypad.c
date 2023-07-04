@@ -46,6 +46,7 @@ static uint16_t RowArr[4] = {GPIO_PIN_9,GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
 static uint16_t ColArr[3] = {GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
 static char Str[30]={0};
 static uint8_t chr=0,start=0;
+static char PressedKey;
 
 
 /*$declare${AOs::Keypad} vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
@@ -108,23 +109,10 @@ static QState Keypad_Button(Keypad * const me, QEvt const * const e) {
                     if(HAL_GPIO_ReadPin(GPIOE,RowArr[j]) == GPIO_PIN_SET){
                         if((HAL_GetTick() - prevTick[j][i]) > 100 && (LastButtonStateArr[j][i] == 0)){
                             printf("Pressed key : %c\n",keypad[j][i]);
-
-                            if(keypad[j][i] == '*'){
-                                start = 1;
-                                chr = 0;
-                            }else if(keypad[j][i] != '*' && keypad[j][i] != '#'){
-                                if(start == 1){
-                                    Str[chr == 30 ? chr = 0 : chr++] = keypad[j][i];
-                                }
-                            }else if(keypad[j][i] == '#'){
-                                if(start == 1 && chr != 0){
-                                    printf("String is : %s\n",Str);
-                                }
-                                start = 0;
-                                chr  = 0;
-                            }
-
+                            PressedKey = keypad[j][i];
                             LastButtonStateArr[j][i] = 1;
+                            static QEvt const buttonPressedEvt = {BUTTON_PRESSED_SIG};
+                            QACTIVE_POST(AO_Keypad, &buttonPressedEvt,0U);
                         }
                     }else{
                         prevTick[j][i] = HAL_GetTick();
@@ -140,6 +128,21 @@ static QState Keypad_Button(Keypad * const me, QEvt const * const e) {
         }
         /*${AOs::Keypad::SM::Button::BUTTON_PRESSED} */
         case BUTTON_PRESSED_SIG: {
+            if(PressedKey == '*'){
+                start = 1;
+                chr = 0;
+            }else if(PressedKey != '*' && PressedKey != '#'){
+                if(start == 1){
+                    Str[chr == 30 ? chr = 0 : chr++] = PressedKey;
+                }
+            }else if(PressedKey == '#'){
+                if(start == 1 && chr != 0){
+                    printf("String is : %s\n",Str);
+                }
+                start = 0;
+                chr  = 0;
+            }
+
             status_ = Q_HANDLED();
             break;
         }
