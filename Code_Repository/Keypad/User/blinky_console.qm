@@ -36,17 +36,19 @@ https://www.state-machine.com/qpc/exa.html</documentation>
    <!--${AOs::Keypad::SM}-->
    <statechart properties="0x01">
     <!--${AOs::Keypad::SM::initial}-->
-    <initial target="../1">
+    <initial target="../1/0">
      <action>QTimeEvt_armX(&amp;me-&gt;timeEvt,BSP_TICKS_PER_SEC/2,1U);</action>
-     <initial_glyph conn="46,14,5,1,17,5,-3">
-      <action box="0,-2,15,2"/>
+     <initial_glyph conn="51,8,5,1,21,17,-7">
+      <action box="0,-2,10,2"/>
      </initial_glyph>
     </initial>
-    <!--${AOs::Keypad::SM::Button}-->
-    <state name="Button">
-     <!--${AOs::Keypad::SM::Button::BUTTON_READ}-->
-     <tran trig="BUTTON_READ">
-      <action>
+    <!--${AOs::Keypad::SM::System}-->
+    <state name="System">
+     <!--${AOs::Keypad::SM::System::Button}-->
+     <state name="Button">
+      <!--${AOs::Keypad::SM::System::Button::TIMEOUT}-->
+      <tran trig="TIMEOUT">
+       <action>
 for(uint8_t i=0;i&lt;3;i++){
     HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_SET);
     for(uint8_t j=0;j&lt;4;j++){
@@ -67,13 +69,13 @@ for(uint8_t i=0;i&lt;3;i++){
     HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_RESET);
 }
 </action>
-      <tran_glyph conn="39,25,3,-1,11">
-       <action box="0,-2,13,2"/>
-      </tran_glyph>
-     </tran>
-     <!--${AOs::Keypad::SM::Button::BUTTON_PRESSED}-->
-     <tran trig="BUTTON_PRESSED">
-      <action>if(PressedKey == '*'){
+       <tran_glyph conn="44,30,3,-1,11">
+        <action box="0,-2,13,2"/>
+       </tran_glyph>
+      </tran>
+      <!--${AOs::Keypad::SM::System::Button::BUTTON_PRESSED}-->
+      <tran trig="BUTTON_PRESSED">
+       <action>if(PressedKey == '*'){
     start = 1;
     chr = 0;
 }else if(PressedKey != '*' &amp;&amp; PressedKey != '#'){
@@ -88,17 +90,13 @@ for(uint8_t i=0;i&lt;3;i++){
     chr  = 0;
 }
 </action>
-      <tran_glyph conn="39,32,3,-1,11">
-       <action box="0,-2,16,2"/>
-      </tran_glyph>
-     </tran>
-     <!--${AOs::Keypad::SM::Button::Q_INIT}-->
-     <tran trig="Q_INIT">
-      <tran_glyph conn="39,21,3,-1,12">
-       <action box="0,-2,10,2"/>
-      </tran_glyph>
-     </tran>
-     <state_glyph node="39,16,21,21"/>
+       <tran_glyph conn="44,37,3,-1,11">
+        <action box="0,-2,16,2"/>
+       </tran_glyph>
+      </tran>
+      <state_glyph node="44,21,21,21"/>
+     </state>
+     <state_glyph node="34,16,46,31"/>
     </state>
     <state_diagram size="105,80"/>
    </statechart>
@@ -108,7 +106,7 @@ for(uint8_t i=0;i&lt;3;i++){
    <documentation>The Blinky &quot;constructor&quot; is provided outside of the Blinky class, so that it can be used independently from the class. This is part of the &quot;opaque pointer&quot; design idiom.</documentation>
    <code>Keypad *me = (Keypad *)AO_Keypad;
 QActive_ctor(&amp;me-&gt;super, Q_STATE_CAST(&amp;Keypad_initial));
-QTimeEvt_ctorX(&amp;me-&gt;timeEvt, &amp;me-&gt;super, BUTTON_READ_SIG, 0U);</code>
+QTimeEvt_ctorX(&amp;me-&gt;timeEvt, &amp;me-&gt;super, TIMEOUT_SIG, 0U);</code>
   </operation>
  </package>
  <!--${.}-->
@@ -128,11 +126,13 @@ void BSP_ledOff(void);
 void BSP_ledOn(void);
 
 /* define the event signals used in the application ------------------------*/
-enum BlinkySignals {
-    BUTTON_READ_SIG = Q_USER_SIG, /* offset the first signal by Q_USER_SIG */
+enum KeypadSignals {
+    TIMEOUT_SIG = Q_USER_SIG, /* offset the first signal by Q_USER_SIG */
     BUTTON_PRESSED_SIG,
+    IMU_READ_SIG,
     MAX_SIG /* keep last (the number of signals) */
 };
+
 
 /* active object(s) used in this application -------------------------------*/
 extern QActive * const AO_Keypad; /* opaque pointer to the Keypad AO */
@@ -179,7 +179,10 @@ void QV_onIdle(void){
    <text>#include &quot;qpc.h&quot;
 #include &quot;bsp.h&quot;
 #include &quot;keypad.h&quot;
+#include &quot;my_mpu6050.h&quot;
 
+extern mpu6050 myMpu;
+extern I2C_HandleTypeDef hi2c1;
 
 static char keypad[4][3] = {
     {'1', '2', '3'},
@@ -195,7 +198,6 @@ static uint16_t ColArr[3] = {GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
 static char Str[30]={0};
 static uint8_t chr=0,start=0;
 static char PressedKey;
-
 
 $declare${AOs::Keypad}
 

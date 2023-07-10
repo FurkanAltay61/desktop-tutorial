@@ -41,11 +41,13 @@ void BSP_ledOff(void);
 void BSP_ledOn(void);
 
 /* define the event signals used in the application ------------------------*/
-enum BlinkySignals {
-    BUTTON_READ_SIG = Q_USER_SIG, /* offset the first signal by Q_USER_SIG */
+enum KeypadSignals {
+    TIMEOUT_SIG = Q_USER_SIG, /* offset the first signal by Q_USER_SIG */
     BUTTON_PRESSED_SIG,
+    IMU_READ_SIG,
     MAX_SIG /* keep last (the number of signals) */
 };
+
 
 /* active object(s) used in this application -------------------------------*/
 extern QActive * const AO_Keypad; /* opaque pointer to the Keypad AO */

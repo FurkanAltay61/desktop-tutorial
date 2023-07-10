@@ -31,7 +31,10 @@
 #include "qpc.h"
 #include "bsp.h"
 #include "keypad.h"
+#include "my_mpu6050.h"
 
+extern mpu6050 myMpu;
+extern I2C_HandleTypeDef hi2c1;
 
 static char keypad[4][3] = {
     {'1', '2', '3'},
@@ -48,7 +51,6 @@ static char Str[30]={0};
 static uint8_t chr=0,start=0;
 static char PressedKey;
 
-
 /*$declare${AOs::Keypad} vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
 
 /*${AOs::Keypad} ...........................................................*/
@@ -62,6 +64,7 @@ typedef struct {
 
 /* protected: */
 static QState Keypad_initial(Keypad * const me, void const * const par);
+static QState Keypad_System(Keypad * const me, QEvt const * const e);
 static QState Keypad_Button(Keypad * const me, QEvt const * const e);
 /*$enddecl${AOs::Keypad} ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 
@@ -82,7 +85,7 @@ QActive * const AO_Keypad = &l_keypad.super;
 void Keypad_ctor(void) {
     Keypad *me = (Keypad *)AO_Keypad;
     QActive_ctor(&me->super, Q_STATE_CAST(&Keypad_initial));
-    QTimeEvt_ctorX(&me->timeEvt, &me->super, BUTTON_READ_SIG, 0U);
+    QTimeEvt_ctorX(&me->timeEvt, &me->super, TIMEOUT_SIG, 0U);
 }
 /*$enddef${AOs::Keypad_ctor} ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 /*$define${AOs::Keypad} vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
@@ -96,12 +99,24 @@ static QState Keypad_initial(Keypad * const me, void const * const par) {
     return Q_TRAN(&Keypad_Button);
 }
 
-/*${AOs::Keypad::SM::Button} ...............................................*/
+/*${AOs::Keypad::SM::System} ...............................................*/
+static QState Keypad_System(Keypad * const me, QEvt const * const e) {
+    QState status_;
+    switch (e->sig) {
+        default: {
+            status_ = Q_SUPER(&QHsm_top);
+            break;
+        }
+    }
+    return status_;
+}
+
+/*${AOs::Keypad::SM::System::Button} .......................................*/
 static QState Keypad_Button(Keypad * const me, QEvt const * const e) {
     QState status_;
     switch (e->sig) {
-        /*${AOs::Keypad::SM::Button::BUTTON_READ} */
-        case BUTTON_READ_SIG: {
+        /*${AOs::Keypad::SM::System::Button::TIMEOUT} */
+        case TIMEOUT_SIG: {
 
             for(uint8_t i=0;i<3;i++){
                 HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_SET);
@@ -126,7 +141,7 @@ static QState Keypad_Button(Keypad * const me, QEvt const * const e) {
             status_ = Q_HANDLED();
             break;
         }
-        /*${AOs::Keypad::SM::Button::BUTTON_PRESSED} */
+        /*${AOs::Keypad::SM::System::Button::BUTTON_PRESSED} */
         case BUTTON_PRESSED_SIG: {
             if(PressedKey == '*'){
                 start = 1;
@@ -146,13 +161,8 @@ static QState Keypad_Button(Keypad * const me, QEvt const * const e) {
             status_ = Q_HANDLED();
             break;
         }
-        /*${AOs::Keypad::SM::Button::Q_INIT} */
-        case Q_INIT_SIG: {
-            status_ = Q_HANDLED();
-            break;
-        }
         default: {
-            status_ = Q_SUPER(&QHsm_top);
+            status_ = Q_SUPER(&Keypad_System);
             break;
         }
     }

@@ -24,6 +24,8 @@
 /* USER CODE BEGIN Includes */
 #include "qpc.h"
 #include "bsp.h"
+#include "my_mpu6050.h"
+#include "mpu6050.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,14 +47,17 @@ Q_DEFINE_THIS_FILE
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
 
 /* USER CODE BEGIN PV */
-
+mpu6050 myMpu;
+MPU6050_t MPU6050;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
 void xITM_SendChar(uint8_t ch)
 {
@@ -94,7 +99,7 @@ int _write(int file, char *ptr, int len)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	static QEvt const *keypad_queueSto[10]; /* event queue buffer for Blinky */
+	static QEvt const *keypad_queueSto[100]; /* event queue buffer for Blinky */
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -115,20 +120,26 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  QF_init();  /* initialize the framework */
-  BSP_init(); /* initialize the BSP */
-
-  /* instantiate and start the Blinky active object */
-  Keypad_ctor(); /* in C you must explicitly call the Blinky constructor */
-  QACTIVE_START(AO_Keypad, /* active object to start */
-      1U,                  /* priority of the active object */
-      keypad_queueSto,     /* event queue buffer */
-      Q_DIM(keypad_queueSto), /* the length of the buffer */
-      (void *)0, 0U,       /* private stack (not used) */
-      (QEvt *)0);          /* initialization event (not used) */
-
-  return QF_run(); /* let the framework run the application */
+  mpu6050_detect(&hi2c1);
+  while(mpu6050_config(&hi2c1) != 0);
+  mpu6050_ConfigGyro(&hi2c1, &myMpu);
+  mpu6050_ConfigAccel(&hi2c1, &myMpu);
+//  while (MPU6050_Init(&hi2c1) == 1);
+//  QF_init();  /* initialize the framework */
+//  BSP_init(); /* initialize the BSP */
+//
+//  /* instantiate and start the Blinky active object */
+//  Keypad_ctor(); /* in C you must explicitly call the Blinky constructor */
+//  QACTIVE_START(AO_Keypad, /* active object to start */
+//      1U,                  /* priority of the active object */
+//      keypad_queueSto,     /* event queue buffer */
+//      Q_DIM(keypad_queueSto), /* the length of the buffer */
+//      (void *)0, 0U,       /* private stack (not used) */
+//      (QEvt *)0);          /* initialization event (not used) */
+//
+//  return QF_run(); /* let the framework run the application */
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -138,7 +149,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
+	  mpu6050_CalcAngle(&hi2c1, &myMpu);
+	//  MPU6050_Read_All(&hi2c1, &MPU6050);
+	  HAL_Delay(10);
   }
   /* USER CODE END 3 */
 }
@@ -186,6 +199,40 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_ENABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
 }
 
 /**
@@ -251,24 +298,6 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-// Keypad matrix definition
-
-//char pressedKey = 0;
-//
-//char keypad[4][3] = {
-//    {'1', '2', '3'},
-//    {'4', '5', '6'},
-//    {'7', '8', '9'},
-//    {'*', '0', '#'}
-//};
-//
-//uint8_t  LastButtonStateArr[4][3]={0};
-//uint32_t prevTick[4][3]= {0};
-//uint16_t RowArr[4] = {GPIO_PIN_9,GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
-//uint16_t ColArr[3] = {GPIO_PIN_11,GPIO_PIN_13,GPIO_PIN_15};
-//char Str[30]={0};
-//uint8_t chr=0,start=0;
-
 void HAL_SYSTICK_Callback(void)
 {
   /* NOTE : This function Should not be modified, when the callback is needed,
@@ -276,41 +305,6 @@ void HAL_SYSTICK_Callback(void)
    */
 
 	QF_TICK_X(0U, (void *)0); /* QF clock tick processing for rate 0 */
-
-//	for(uint8_t i=0;i<3;i++){
-//		HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_SET);
-//		for(uint8_t j=0;j<4;j++){
-//			if(HAL_GPIO_ReadPin(GPIOE,RowArr[j]) == GPIO_PIN_SET){
-//				if((HAL_GetTick() - prevTick[j][i]) > 100 && (LastButtonStateArr[j][i] == 0)){
-//					printf("Pressed key : %c\n",keypad[j][i]);
-//
-//					if(keypad[j][i] == '*'){
-//						start = 1;
-//						chr = 0;
-//					}else if(keypad[j][i] != '*' && keypad[j][i] != '#'){
-//						if(start == 1){
-//							Str[chr == 30 ? chr = 0 : chr++] = keypad[j][i];
-//						}
-//					}else if(keypad[j][i] == '#'){
-//						if(start == 1 && chr != 0){
-//							printf("String is : %s\n",Str);
-//						}
-//						start = 0;
-//						chr  = 0;
-//					}
-//
-//					LastButtonStateArr[j][i] = 1;
-//				}
-//			}else{
-//				prevTick[j][i] = HAL_GetTick();
-//				LastButtonStateArr[j][i] = 0;
-//			}
-//		}
-//
-//		HAL_GPIO_WritePin(GPIOB,ColArr[i], GPIO_PIN_RESET);
-//	}
-
-
 
 }
 
